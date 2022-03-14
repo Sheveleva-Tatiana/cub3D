@@ -21,5 +21,6 @@
 # include <errno.h>
 # include <fcntl.h>
 # include "../lib/libft.h"
+# include "../mlx/mlx.h"
 
 #endif

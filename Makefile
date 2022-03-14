@@ -4,7 +4,7 @@ SRCS	=	src/main.c\
 
 LIB 	=	./lib/libft.a
 
-HEADER	=	includes/cub3d.h ./lib/libft.h
+HEADER	=	includes/cub3d.h ./lib/libft.h ./mlx/mlx.h
 
 RM		=	rm -f
 
@@ -14,7 +14,7 @@ GCC		= clang
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-FLAG	=	-g
+FLAG	=	-L mlx -lmlx -framework OpenGL -framework AppKit
 
 $(NAME)	:	$(OBJS) $(HEADER)
 			@$(MAKE) -C ./lib
