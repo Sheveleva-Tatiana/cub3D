@@ -1,10 +1,10 @@
-NAME	=	minishell
+NAME	=	cub3d
 
 SRCS	=	src/main.c\
 
 LIB 	=	./lib/libft.a
 
-HEADER	=	includes/cub3d.h ./lib/libft.h ./mlx/mlx.h
+HEADER	=	includes/cub3d.h ./lib/libft.h ./minilibx_opengl_20191021/mlx.h
 
 RM		=	rm -f
 
@@ -14,7 +14,7 @@ GCC		= clang
 
 CFLAGS	=	-Wall -Wextra -Werror
 
-FLAG	=	-L mlx -lmlx -framework OpenGL -framework AppKit
+FLAG	=	-L minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
 
 $(NAME)	:	$(OBJS) $(HEADER)
 			@$(MAKE) -C ./lib

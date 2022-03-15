@@ -20,6 +20,6 @@
 # include <errno.h>
 # include <fcntl.h>
 # include "../lib/libft.h"
-# include "../mlx/mlx.h"
+# include "../minilibx_opengl_20191021/mlx.h"
 
 #endif

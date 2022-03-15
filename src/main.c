@@ -13,7 +13,8 @@ int ft_check_name(char *name)
 int main(int ac, char **av)
 {
     if (ac == 2 && ft_check_name(av[1]))
-        init_map(av[1]);
+        printf("tut");
+//        init_map(av[1]);
     else
         write(2, "Error : Invalid arguments\n", 26);
     return (0);
