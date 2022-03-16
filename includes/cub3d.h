@@ -22,14 +22,14 @@
 # include "../lib/libft.h"
 # include "../minilibx_opengl_20191021/mlx.h"
 
-typedef struct s_win{
-    void    *mlx;
-    void    *win;
-    void    *img;
-    void    *addr;
-    int     line_l;
-    int     bpp;
-    int     en;
-}           t_win;
+typedef struct s_map{
+    char    **map;
+}           t_map;
+
+typedef struct s_data{
+    t_map   *map;
+}           t_data;
+
+void    init_map(char *filename, t_data *data);
 
 #endif
