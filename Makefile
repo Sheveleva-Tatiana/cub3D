@@ -1,6 +1,6 @@
 NAME	=	cub3d
 
-SRCS	=	src/main.c				src/map/init_map.c\
+SRCS	=	src/main.c				src/map/init_map.c				src/utils/error.c\
 
 LIB 	=	./lib/libft.a
 
