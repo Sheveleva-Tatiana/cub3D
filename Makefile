@@ -1,6 +1,8 @@
 NAME	=	cub3d
 
 SRCS	=	src/main.c				src/map/init_map.c				src/utils/error.c\
+			src/utils/utils.c \
+
 
 LIB 	=	./lib/libft.a
 
@@ -12,7 +14,7 @@ OBJS	=	$(SRCS:.c=.o)
 
 GCC		= clang
 
-CFLAGS	=	-Wall -Wextra -Werror
+#CFLAGS	=	-Wall -Wextra -Werror
 
 FLAG	=	-L minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
 

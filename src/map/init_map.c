@@ -2,19 +2,20 @@
 
 int     get_count_line(char *file, int *count)
 {
-    int fd;
-    int b;
+    int		fd;
+    int		b;
+	char	buf;
 
     fd = open(file, O_RDONLY);
     if (fd == -1)
         return (-1);
-    *count = 1;
+	(*count) = 1;
     b = 1;
     while (b > 0)
     {
         b = read(fd, &buf, 1);
         if (buf == '\n')
-            *count++;
+			(*count)++;
         if (b == -1)
             return (-1);
     }
@@ -26,9 +27,11 @@ void    init_map(char *filename, t_data *data)
 {
     int count;
 
-    data = malloc(sizeof(t_data));
+    count = 0;
+	data = malloc(sizeof(t_data));
     if (get_count_line(filename, &count) == -1)
         print_error(1);
+	printf("%d\n", count);
     data->map = malloc(sizeof (t_map));
     data->map->count_line = count;
 }
