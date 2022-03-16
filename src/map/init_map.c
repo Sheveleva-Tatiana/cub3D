@@ -32,3 +32,5 @@ void    init_map(char *filename, t_data *data)
     data->map = malloc(sizeof (t_map));
     data->map->count_line = count;
 }
+
+
