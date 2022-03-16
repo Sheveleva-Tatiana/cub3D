@@ -24,6 +24,7 @@
 
 typedef struct s_map{
     char    **map;
+    int     count_line;
 }           t_map;
 
 typedef struct s_data{
@@ -31,5 +32,5 @@ typedef struct s_data{
 }           t_data;
 
 void    init_map(char *filename, t_data *data);
-
+void    print_error(int i);
 #endif
