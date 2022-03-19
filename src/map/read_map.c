@@ -1,5 +1,13 @@
 #include "../../include/cub3d.h"
 
+void	init_struct_map(t_data *data)
+{
+	data->map->ea = NULL;
+	data->map->no = NULL;
+	data->map->so = NULL;
+	data->map->we = NULL;
+}
+
 void	get_data(char *line, t_data *data, int flag)
 {
 	char	**arr;
@@ -51,4 +59,35 @@ void	copy_map(char *file, int start, t_data *data, int end)
 	}
 	data->map->map[k] = NULL;
 	close(fd);
+}
+
+void	trim_space(t_data *data)
+{
+	char	*line;
+
+	if (data->map->no)
+	{
+		line = ft_strtrim(data->map->no, " ");
+		free(data->map->no);
+		data->map->no = line;
+	}
+	if (data->map->so)
+	{
+		line = ft_strtrim(data->map->so, " ");
+		free(data->map->so);
+		data->map->so = line;
+	}
+	if (data->map->we)
+	{
+		line = ft_strtrim(data->map->we, " ");
+		free(data->map->we);
+		data->map->we = line;
+	}
+	if (data->map->ea)
+	{
+		line = ft_strtrim(data->map->ea, " ");
+		free(data->map->ea);
+		data->map->ea = line;
+	}
+
 }

@@ -36,6 +36,7 @@ int		get_start_line(char *file, t_data *data)
 	int 	i;
 
 	data->map = malloc(sizeof(t_map));
+	init_struct_map(data);
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
 	i = 0;
@@ -82,18 +83,8 @@ void    init_map(char *filename, t_data *data)
     if (get_count_line(filename, &count) == -1)
         print_error(1);
 	copy_map(filename, start, data, count);
-	int i = 0;
-	while (data->map->map[i])
-		printf("%s", data->map->map[i++]);
-	i = 0;
-	while (i < 3)
-	{
-		printf("\n%d     %d\n", data->map->f[i], data->map->c[i]);
-		i++;
-	}
-	printf("%s%s%s%s", data->map->no, data->map->so,
-		   data->map->we, data->map->ea);
-    data->map->count_line = count - start + 1;
+	trim_space(data);
+    data->map->count_line = count - start;
 }
 
 
