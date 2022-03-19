@@ -6,7 +6,7 @@ SRCS	=	src/main.c				src/map/init_map.c				src/utils/error.c\
 
 LIB 	=	./lib/libft.a
 
-HEADER	=	includes/cub3d.h ./lib/libft.h ./minilibx_opengl_20191021/mlx.h
+HEADER	=	include/cub3d.h ./lib/libft.h ./minilibx_opengl_20191021/mlx.h
 
 RM		=	rm -f
 

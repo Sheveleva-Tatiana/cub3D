@@ -35,4 +35,5 @@ int ft_check_name(char *name);
 
 void    init_map(char *filename, t_data *data);
 void    print_error(int i);
+
 #endif

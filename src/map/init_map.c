@@ -1,4 +1,12 @@
-#include "../../includes/cub3d.h"
+#include "../../include/cub3d.h"
+
+int		get_start_line(char *file)
+{
+	int fd;
+	fd = open(file, O_RDONLY);
+
+
+}
 
 int     get_count_line(char *file, int *count)
 {
@@ -26,9 +34,11 @@ int     get_count_line(char *file, int *count)
 void    init_map(char *filename, t_data *data)
 {
     int count;
+	int	start;
 
     count = 0;
 	data = malloc(sizeof(t_data));
+	start = get_start_line(filename);
     if (get_count_line(filename, &count) == -1)
         print_error(1);
 	printf("%d\n", count);
