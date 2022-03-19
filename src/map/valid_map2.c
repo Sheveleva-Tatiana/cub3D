@@ -38,10 +38,18 @@ void	wall_len_next_line(int i, t_data *data, int *err, int j)
 	{
 		while (next_size != size)
 		{
-			if (!ft_strchr("1\n", data->map->map[i ][next_size]))
+			if (!ft_strchr("1\n", data->map->map[i][next_size]))
 				*err = 1;
 			next_size++;
 		}
+	}
+}
+
+void check_space(int i, t_data *data, int *err, int j)
+{
+	if (data->map->map[i][j] == ' ') {
+		check_sym(data, i, j, err);
+		check_next_sym(data, i, j, err);
 	}
 }
 
@@ -59,6 +67,7 @@ void	check_close_wall_inside(t_data *data)
 		while (data->map->map[i][j]) {
 			close_wall_in_utils(i, data, &err, j);
 			wall_len_next_line(i, data, &err, j);
+			check_space(i, data, &err, j);
 			j++;
 		}
 		i++;

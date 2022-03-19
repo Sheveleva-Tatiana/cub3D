@@ -53,4 +53,6 @@ void	clear_and_exit(t_data *data);
 void	valid_map(t_data *data);
 int 	size_arr(char **arr);
 void	check_close_wall_inside(t_data *data);
+void	check_sym(t_data *data, int i, int j, int *err);
+void	check_next_sym(t_data *data, int i, int j, int *err);
 #endif
