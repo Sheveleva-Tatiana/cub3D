@@ -18,7 +18,10 @@ void	close_wall_in_utils(int i, t_data *data, int *err, int j)
 
 void	wall_len_next_line(int i, t_data *data, int *err, int j)
 {
+	int size;
+	int next_size;
 
+	size = ft_strlen(data->map->map[i]) - 2;
 }
 
 void	check_close_wall_inside(t_data *data)
