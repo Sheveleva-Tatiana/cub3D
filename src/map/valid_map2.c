@@ -16,6 +16,11 @@ void	close_wall_in_utils(int i, t_data *data, int *err, int j)
 	}
 }
 
+void	wall_len_next_line(int i, t_data *data, int *err, int j)
+{
+
+}
+
 void	check_close_wall_inside(t_data *data)
 {
 	int	i;
@@ -29,6 +34,7 @@ void	check_close_wall_inside(t_data *data)
 		j = 0;
 		while (data->map->map[i][j]) {
 			close_wall_in_utils(i, data, &err, j);
+			wall_len_next_line(i, data, &err, j);
 			j++;
 		}
 		i++;
