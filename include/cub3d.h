@@ -49,4 +49,5 @@ int		ft_isdigit_char(char *str);
 void	copy_map(char *file, int start, t_data *data, int end);
 void	trim_space(t_data *data);
 void	init_struct_map(t_data *data);
+void	clear_and_exit(t_data *data);
 #endif

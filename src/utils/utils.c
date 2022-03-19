@@ -64,3 +64,24 @@ int	ft_isdigit_char(char *str)
 	}
 	return (1);
 }
+
+void	clear_and_exit(t_data *data)
+{
+	if (data->map)
+	{
+		if (data->map->map)
+			clear_arr(data->map->map);
+		if (data->map->we)
+			free(data->map->we);
+		if (data->map->no)
+			free(data->map->no);
+		if (data->map->ea)
+			free(data->map->ea);
+		if (data->map->so)
+			free(data->map->so);
+		free(data->map);
+	}
+	free(data);
+	exit (1);
+
+}

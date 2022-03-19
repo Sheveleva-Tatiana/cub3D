@@ -85,6 +85,7 @@ void    init_map(char *filename, t_data *data)
 	copy_map(filename, start, data, count);
 	trim_space(data);
     data->map->count_line = count - start;
+	valid_map(data);
 }
 
 

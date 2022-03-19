@@ -24,7 +24,7 @@ void	get_data(char *line, t_data *data, int flag)
 	{
 		if (!(ft_isdigit_char(arr[i])))
 		{
-			printf("Incorrect data");
+			printf("Error\n");
 			exit (1);
 		}
 		if (flag == 0)
