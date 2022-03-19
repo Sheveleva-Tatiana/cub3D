@@ -24,6 +24,25 @@ void	wall_len_next_line(int i, t_data *data, int *err, int j)
 	size = ft_strlen(data->map->map[i]) - 2;
 	if (data->map->map[i + 1])
 		next_size = ft_strlen(data->map->map[i + 1]) - 2;
+	else
+		return ;
+	if (size < next_size)
+	{
+		while (data->map->map[i + 1][size]) {
+			if (!ft_strchr("1\n", data->map->map[i + 1][size]))
+				*err = 1;
+			size++;
+		}
+	}
+	else if (size > next_size)
+	{
+		while (next_size != size)
+		{
+			if (!ft_strchr("1\n", data->map->map[i ][next_size]))
+				*err = 1;
+			next_size++;
+		}
+	}
 }
 
 void	check_close_wall_inside(t_data *data)
