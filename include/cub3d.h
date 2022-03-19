@@ -50,4 +50,7 @@ void	copy_map(char *file, int start, t_data *data, int end);
 void	trim_space(t_data *data);
 void	init_struct_map(t_data *data);
 void	clear_and_exit(t_data *data);
+void	valid_map(t_data *data);
+int 	size_arr(char **arr);
+void	check_close_wall_inside(t_data *data);
 #endif
