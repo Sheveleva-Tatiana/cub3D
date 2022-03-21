@@ -76,17 +76,11 @@ void    init_map(char *filename, t_data *data)
 	start = get_start_line(filename, data);
     if (get_count_line(filename, &count) == -1)
         print_error(1);
-	printf("%d, %d", start, count);
 	copy_map(filename, start, data, count);
 	trim_space(data);
     data->map->count_line = count - start;
-	while (data->map->map[i])
-	{
-		printf("%s", data->map->map[i]);
-		i++;
-	}
 	valid_map(data);
-
+	run_game(data);
 }
 
 
