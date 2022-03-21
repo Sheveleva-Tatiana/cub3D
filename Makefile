@@ -3,7 +3,7 @@ NAME	=	cub3d
 SRCS	=	src/main.c					src/map/init_map.c				src/utils/error.c\
 			src/utils/utils.c 			src/gnl/get_next_line.c			src/map/read_map.c\
 			src/map/valid_map.c			src/utils/utils2.c				src/map/valid_map2.c\
-			src/map/valid_map_utils.c
+			src/map/valid_map_utils.c	src/mlx/run_game.c
 
 
 LIB 	=	./lib/libft.a
