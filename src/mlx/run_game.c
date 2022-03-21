@@ -53,11 +53,19 @@ void	game_hook(t_data *data)
 	mlx_hook(data->win, 3, 1L << 0, unpress_key, data);
 }
 
+int	render(t_data *data)
+{
+	if (data->active_key[53] == 1)
+		clear_and_exit(data);
+	return (0);
+}
+
 void	run_game(t_data *data)
 {
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, 640, 480, "cub3D");
 	game_hook(data);
+	mlx_loop_hook(data->mlx, &render, data);
 	draw_map(data);
 	mlx_loop(data->mlx);
 }

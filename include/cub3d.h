@@ -12,6 +12,10 @@
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# define N 1
+# define S 2
+# define W 3
+# define E 4
 
 # include <stdio.h>
 # include <unistd.h>
@@ -21,6 +25,12 @@
 # include <fcntl.h>
 # include "../lib/libft.h"
 # include "../minilibx_opengl_20191021/mlx.h"
+
+typedef struct s_ply{
+	double	x;
+	double 	y;
+	int 	pos;
+}			t_ply;
 
 typedef struct s_map{
     char    **map;
@@ -38,6 +48,7 @@ typedef struct s_data{
     void 	*mlx;
     void 	*win;
 	char 	*active_key;
+	t_ply	*ply;
 }           t_data;
 
 int ft_check_name(char *name);

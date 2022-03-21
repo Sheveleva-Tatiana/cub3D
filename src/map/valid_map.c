@@ -20,6 +20,20 @@
 	}
 }
 
+void	put_player(int i, int j, t_data *data)
+{
+	data->ply->x = j;
+	data->ply->y = i;
+	if (ft_strchr("N", data->map->map[i][j]))
+		data->ply->pos = N;
+	else if (ft_strchr("S", data->map->map[i][j]))
+		data->ply->pos = S;
+	else if (ft_strchr("W", data->map->map[i][j]))
+		data->ply->pos = W;
+	else if (ft_strchr("E", data->map->map[i][j]))
+		data->ply->pos = E;
+}
+
 void	check_player(t_data *data)
 {
 	int	i;
@@ -33,6 +47,7 @@ void	check_player(t_data *data)
 		j = 0;
 		while (data->map->map[i][j]) {
 			if (ft_strchr("NSEW", data->map->map[i][j])) {
+				put_player(i, j, data);
 				count++;
 			}
 			j++;

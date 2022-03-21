@@ -70,6 +70,7 @@ void	init_active_key(t_data *data)
 	int i;
 
 	i = 0;
+	data->ply = malloc(sizeof(t_ply));
 	data->active_key = malloc(sizeof(char) * 256);
 	while(i < 256)
 		data->active_key[i++] = 0;
