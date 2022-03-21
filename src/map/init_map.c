@@ -65,6 +65,16 @@ int     get_count_line(char *file, int *count)
     return (1);
 }
 
+void	init_active_key(t_data *data)
+{
+	int i;
+
+	i = 0;
+	data->active_key = malloc(sizeof(char) * 256);
+	while(i < 256)
+		data->active_key[i++] = 0;
+}
+
 void    init_map(char *filename, t_data *data)
 {
     int count;
@@ -73,6 +83,7 @@ void    init_map(char *filename, t_data *data)
 
     count = 0;
 	data = malloc(sizeof(t_data));
+	init_active_key(data);
 	start = get_start_line(filename, data);
     if (get_count_line(filename, &count) == -1)
         print_error(1);

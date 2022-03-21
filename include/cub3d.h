@@ -37,6 +37,7 @@ typedef struct s_data{
     t_map   *map;
     void 	*mlx;
     void 	*win;
+	char 	*active_key;
 }           t_data;
 
 int ft_check_name(char *name);
