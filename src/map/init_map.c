@@ -58,16 +58,9 @@ int     get_count_line(char *file, int *count)
     fd = open(file, O_RDONLY);
     if (fd == -1)
         return (-1);
-	(*count) = 1;
-    b = 1;
-    while (b > 0)
-    {
-        b = read(fd, &buf, 1);
-        if (buf == '\n')
-			(*count)++;
-        if (b == -1)
-            return (-1);
-    }
+	(*count) = 0;
+    while(get_next_line(fd))
+		(*count)++;
     close(fd);
     return (1);
 }
@@ -76,16 +69,24 @@ void    init_map(char *filename, t_data *data)
 {
     int count;
 	int	start;
+	int i = 0;
 
     count = 0;
 	data = malloc(sizeof(t_data));
 	start = get_start_line(filename, data);
     if (get_count_line(filename, &count) == -1)
         print_error(1);
+	printf("%d, %d", start, count);
 	copy_map(filename, start, data, count);
 	trim_space(data);
     data->map->count_line = count - start;
+	while (data->map->map[i])
+	{
+		printf("%s", data->map->map[i]);
+		i++;
+	}
 	valid_map(data);
+
 }
 
 

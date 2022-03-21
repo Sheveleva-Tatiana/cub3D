@@ -49,7 +49,7 @@ void	copy_map(char *file, int start, t_data *data, int end)
 	data->map->map = malloc(sizeof(char *) * ((end - start) + 1) + 1);
 	while(line)
 	{
-		if (i >= start)
+		if (i >= start && line[0] != '\n')
 		{
 			data->map->map[k] = line;
 			k++;
