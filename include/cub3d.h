@@ -16,12 +16,14 @@
 # define S 2
 # define W 3
 # define E 4
+# define PI 3.14159265
 
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
 # include <errno.h>
+# include <math.h>
 # include <fcntl.h>
 # include "../lib/libft.h"
 # include "../minilibx_opengl_20191021/mlx.h"
@@ -31,6 +33,8 @@ typedef struct s_ply{
 	double 	y;
 	int 	pos;
 	double 	angle;
+	double  move_k;
+	double 	rotate_k;
 }			t_ply;
 
 typedef struct s_map{

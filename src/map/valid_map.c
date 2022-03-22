@@ -40,6 +40,8 @@ void	put_player(int i, int j, t_data *data)
 		data->ply->pos = E;
 		data->ply->angle = 0;
 	}
+	data->ply->move_k = 0.1;
+	data->ply->rotate_k = 1.5;
 }
 
 void	check_player(t_data *data)

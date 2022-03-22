@@ -53,11 +53,39 @@ void	game_hook(t_data *data)
 	mlx_hook(data->win, 3, 1L << 0, unpress_key, data);
 }
 
+void	player_up_down(double x, double y, t_data *data)
+{
+	if (data->active_key[13] == 1) {
+		if (data->map->map[(int) data->ply->y][(int) (data->ply->x + x)] == '0')
+			data->ply->x = data->ply->x + x;
+		if (data->map->map[(int)(data->ply->y + y)][(int)data->ply->x] == '0')
+			data->ply->y = data->ply->y + y;
+	}
+	else if (data->active_key[1] == 1)
+	{
+		if (data->map->map[(int) data->ply->y][(int) (data->ply->x - x)] == '0')
+			data->ply->x = data->ply->x - x;
+		if (data->map->map[(int)(data->ply->y - y)][(int)data->ply->x] == '0')
+			data->ply->y = data->ply->y - y;
+	}
+}
+
+void	get_coordinates(t_data *data)
+{
+	double x;
+	double y;
+
+	x = data->ply->move_k * cos(data->ply->angle * PI / 180);
+	y = data->ply->move_k * sin(data->ply->angle * PI / 180);
+	player_up_down(x, y, data);
+//	player_left_right(x, y, data);
+}
+
 int	render(t_data *data)
 {
 	if (data->active_key[53] == 1)
 		clear_and_exit(data);
-
+	get_coordinates(data);
 	return (0);
 }
 
