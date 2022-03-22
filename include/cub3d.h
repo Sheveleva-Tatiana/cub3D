@@ -17,6 +17,8 @@
 # define W 3
 # define E 4
 # define PI 3.14159265
+# define WIN_WIDTH 1500
+# define WIN_HEIGHT 640
 
 # include <stdio.h>
 # include <unistd.h>
@@ -28,6 +30,14 @@
 # include "../lib/libft.h"
 # include "../minilibx_opengl_20191021/mlx.h"
 
+typedef struct s_img {
+	void	*img;
+	int		*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}			t_img;
+
 typedef struct s_ply{
 	double	x;
 	double 	y;
@@ -35,6 +45,7 @@ typedef struct s_ply{
 	double 	angle;
 	double  move_k;
 	double 	rotate_k;
+	double 	fov;
 }			t_ply;
 
 typedef struct s_map{
@@ -51,6 +62,7 @@ typedef struct s_map{
 typedef struct s_data{
     t_map   *map;
     void 	*mlx;
+	t_img 	img;
     void 	*win;
 	char 	*active_key;
 	t_ply	*ply;
