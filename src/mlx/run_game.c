@@ -57,6 +57,7 @@ int	render(t_data *data)
 {
 	if (data->active_key[53] == 1)
 		clear_and_exit(data);
+
 	return (0);
 }
 

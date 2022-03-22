@@ -24,14 +24,22 @@ void	put_player(int i, int j, t_data *data)
 {
 	data->ply->x = j;
 	data->ply->y = i;
-	if (ft_strchr("N", data->map->map[i][j]))
+	if (ft_strchr("N", data->map->map[i][j])) {
 		data->ply->pos = N;
-	else if (ft_strchr("S", data->map->map[i][j]))
+		data->ply->angle = 90;
+	}
+	else if (ft_strchr("S", data->map->map[i][j])) {
 		data->ply->pos = S;
-	else if (ft_strchr("W", data->map->map[i][j]))
+		data->ply->angle = 270;
+	}
+	else if (ft_strchr("W", data->map->map[i][j])) {
 		data->ply->pos = W;
-	else if (ft_strchr("E", data->map->map[i][j]))
+		data->ply->angle = 180;
+	}
+	else if (ft_strchr("E", data->map->map[i][j])) {
 		data->ply->pos = E;
+		data->ply->angle = 0;
+	}
 }
 
 void	check_player(t_data *data)

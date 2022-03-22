@@ -30,6 +30,7 @@ typedef struct s_ply{
 	double	x;
 	double 	y;
 	int 	pos;
+	double 	angle;
 }			t_ply;
 
 typedef struct s_map{
