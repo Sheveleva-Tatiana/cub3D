@@ -74,10 +74,19 @@ void	get_perp_wall(t_data *data, t_paint *paint)
 				* paint->cos;
 }
 
+void	draw_ceiling(t_data *data, t_paint *paint)
+{
+	int	color;
+	color = ((data->map->c[0]) & 0xff) + ((data->map->c[1]) & 0xff << 8) +
+			((data->map->c[2]) & 0xff << 16);
+	data->img.addr[paint->y * WIN_WIDTH + paint->x] = color;
+	paint->y++;
+}
+
 void put_wall(t_data *data, t_paint *paint)
 {
 	paint->y = 0;
-
+	draw_ceiling(data, paint);
 }
 
 void	draw_wall(t_data *data)
@@ -92,12 +101,12 @@ void	draw_wall(t_data *data)
 	while (paint.angle > paint.end)
 	{
 		get_step(data, &paint);
-		paint.angle = paint.angle - paint.step;
 		get_side(data, &paint);
 		get_perp_wall(data, &paint);
 		put_wall(data, &paint);
 		data->ply->zbuffer[paint.x] = paint.perpwalldist / cos(
 				(data->ply->angle - paint.angle) * PI / 180);
+		paint.angle = paint.angle - paint.step;
 		paint.x++;
 	}
 }
