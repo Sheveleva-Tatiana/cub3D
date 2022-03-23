@@ -96,6 +96,27 @@ void	draw_flour(t_data *data, t_paint *paint)
 	}
 }
 
+void	draw_wall(t_data *data, t_paint *paint)
+{
+	while (paint->y < paint->drawend)
+	{
+		paint->texy = (int)paint->texpos & (300 - 1);
+		paint->texpos += paint->step;
+		if (paint->side == 1 && paint->map_y < data->ply->y)
+			paint->tn = 0;
+		else if (paint->side == 1)
+			paint->tn = 1;
+		else if (paint->side == 0 && paint->map_x < data->ply->x)
+			paint->tn = 2;
+		else
+			paint->tn = 3;
+		data->img.addr[paint->y * WIN_WIDTH + paint->x] =
+				data->map->tex[paint->tn].data[(int)(paint->texy * 300 +
+				paint->texx)];
+		paint->y++;
+	}
+}
+
 void put_wall(t_data *data, t_paint *paint)
 {
 	paint->y = 0;
@@ -103,14 +124,15 @@ void put_wall(t_data *data, t_paint *paint)
 	paint->texx = (int)(paint->wallx * 300);
 	if ((paint->side == 0 && paint->cos > 0) || \
 		(paint->side == 1 && paint->sin < 0))
-		paint->texx = 300 - draw->texx - 1;
+		paint->texx = 300 - paint->texx - 1;
 	paint->step = (double)300 / paint->lineheight;
 	paint->texpos = (paint->drawstart - WIN_HEIGHT / 2 + paint->lineheight /
 			2) * paint->step;
+	draw_wall(data, paint);
 	draw_flour(data, paint);
 }
 
-void	draw_wall(t_data *data)
+void	wall(t_data *data)
 {
 	t_paint paint;
 
@@ -134,5 +156,5 @@ void	draw_wall(t_data *data)
 
 void	draw(t_data *data)
 {
-	draw_wall(data);
+	wall(data);
 }

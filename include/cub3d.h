@@ -38,12 +38,14 @@ typedef struct s_paint{
 	int		drawstart;
 	int		drawend;
 	double	step;
+	int 	texy;
 	double	angle;
 	int		side;
 	int		hit;
 	double	wallx;
 	double	perpwalldist;
 	int		x;
+	int		tn;
 	int		y;
 	double	cos;
 	double	sin;
@@ -60,6 +62,20 @@ typedef struct s_paint{
 	double 	texpos;
 	double	dis_y_side;
 }			t_paint;
+
+typedef struct s_tex
+{
+	char	*path;
+	void	*ptr;
+	int		*data;
+	int		width;
+	int		height;
+	int		bpp;
+	int		size_l;
+	int		endian;
+	int		count_width;
+}			t_tex;
+
 
 typedef struct s_img {
 	void	*img;
@@ -88,6 +104,7 @@ typedef struct s_map{
 	char	*ea;
 	int 	f[3];
 	int 	c[3];
+	t_tex	*tex;
     int     count_line;
 }           t_map;
 
