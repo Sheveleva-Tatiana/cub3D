@@ -28,6 +28,7 @@ void	get_step(t_data *data, t_paint *paint)
 
 void put_wall(t_data *data, t_paint *paint)
 {
+	paint->y = 0;
 
 }
 
