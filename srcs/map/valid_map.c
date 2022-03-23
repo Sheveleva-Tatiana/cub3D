@@ -43,6 +43,7 @@ void	put_player(int i, int j, t_data *data)
 	data->ply->move_k = 0.2;
 	data->ply->rotate_k = 5.5;
 	data->ply->fov = 60;
+	data->ply->zbuffer = (double *)malloc(sizeof(double) * WIN_WIDTH);
 }
 
 void	check_player(t_data *data)

@@ -32,32 +32,32 @@
 
 
 typedef struct s_paint{
-	double   start;
-	double   end;
-	int	drawstart;
-	int drawend;
-	double   step;
-	double   angle;
-	int 	side;
+	double	start;
+	double	end;
+	int		drawstart;
+	int		drawend;
+	double	step;
+	double	angle;
+	int		side;
 	int		hit;
-	double 	wallx;
-	double 	perpwalldist;
-	int   	x;
-	int   	y;
-	double   cos;
-	double   sin;
-	int 	lineheight;
-	double   delta_x;
-	double   delta_y;
-	int   map_x;
-	int   map_y;
-	int   step_x;
-	int   step_y;
-	double  dis_x_delta;
-	double  dis_y_delta;
-	double  dis_x_side;
-	double  dis_y_side;
-}    t_paint;
+	double	wallx;
+	double	perpwalldist;
+	int		x;
+	int		y;
+	double	cos;
+	double	sin;
+	int		lineheight;
+	double	delta_x;
+	double	delta_y;
+	int		map_x;
+	int		map_y;
+	int		step_x;
+	int		step_y;
+	double	dis_x_delta;
+	double	dis_y_delta;
+	double	dis_x_side;
+	double	dis_y_side;
+}			t_paint;
 
 typedef struct s_img {
 	void	*img;
@@ -72,6 +72,7 @@ typedef struct s_ply{
 	double 	y;
 	int 	pos;
 	double 	angle;
+	double 	*zbuffer;
 	double  move_k;
 	double 	rotate_k;
 	double 	fov;

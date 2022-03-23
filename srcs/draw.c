@@ -96,6 +96,9 @@ void	draw_wall(t_data *data)
 		get_side(data, &paint);
 		get_perp_wall(data, &paint);
 		put_wall(data, &paint);
+		data->ply->zbuffer[paint.x] = paint.perpwalldist / cos(
+				(data->ply->angle - paint.angle) * PI / 180);
+		paint.x++;
 	}
 }
 
