@@ -1,4 +1,4 @@
-#include "../../include/cub3d.h"
+#include "../include/cub3d.h"
 
 void	ft_pixel_put(int y, int x, t_data *data, unsigned int color)
 {
@@ -13,8 +13,7 @@ void	ft_pixel_put(int y, int x, t_data *data, unsigned int color)
 
 void	ft_pixel_ply(double y, double x, t_data *data, unsigned int color)
 {
-			mlx_pixel_put(data->mlx, data->win, x, y, (int)color);
-
+	mlx_pixel_put(data->mlx, data->win, x, y, (int)color);
 }
 
 void	draw_map(t_data *data)
@@ -22,7 +21,6 @@ void	draw_map(t_data *data)
 	int x, y = -1;
 	double h;
 	double a = data->ply->x, b = data->ply->y, angle;
-
 	mlx_clear_window(data->mlx, data->win);
 	while (++y < size_arr(data->map->map))
 	{

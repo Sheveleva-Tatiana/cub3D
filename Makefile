@@ -1,41 +1,66 @@
-NAME	=	cub3d
+NAME			=	cub3D
 
-SRCS	=	src/main.c					src/map/init_map.c				src/utils/error.c\
-			src/utils/utils.c 			src/gnl/get_next_line.c			src/map/read_map.c\
-			src/map/valid_map.c			src/utils/utils2.c				src/map/valid_map2.c\
-			src/map/valid_map_utils.c	src/mlx/run_game.c
+INCLUDES		=	-I ./include/ -I ./mlx/
+
+SRCS_DIR		=	./srcs/
+MAP_DIR			=	./srcs/map/
+UTILS_DIR		=	./srcs/utils/
+OBJS_DIR		=	./objs/
+LIBFT_DIR		=	./lib/
+LIBRARY			=	./lib/libft.a
+MLX_DIR			=	./mlx/
+MLX_LIB			=	./mlx/libmlx.a
+
+SRCS_NAME		=	main.c					\
+					run_game.c
+
+MAP_SRCS		=	get_next_line.c			\
+					init_map.c				\
+					read_map.c				\
+					valid_map.c				\
+					valid_map2.c			\
+					valid_map_utils.c		\
+
+UTILS_SRCS		= 	error.c					\
+					utils.c					\
+					utils2.c				\
 
 
-LIB 	=	./lib/libft.a
+OBJS_NAME		= $(SRCS_NAME:.c=.o) $(MAP_SRCS:.c=.o) $(UTILS_SRCS:.c=.o)
 
-HEADER	=	include/cub3d.h ./lib/libft.h ./minilibx_opengl_20191021/mlx.h
+SRCS			= 	$(addprefix $(SRCS_DIR), $(SRCS_NAME)) \
+					$(addprefix $(MAP_DIR), $(MAP_SRCS)) \
+					$(addprefix $(UTILS_DIR), $(UTILS_SRCS))
 
-RM		=	rm -f
+OBJS			= 	$(addprefix $(OBJS_DIR), $(OBJS_NAME))
 
-OBJS	=	$(SRCS:.c=.o)
+CC				= gcc
 
-GCC		= clang
+#CFLAGS			= -Wall -Wextra -Werror
+MLX_FLAGS		= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
-#CFLAGS	=	-Wall -Wextra -Werror
+all:				$(NAME)
 
-FLAG	=	-L minilibx_opengl_20191021 -lmlx -framework OpenGL -framework AppKit
+$(NAME):			$(OBJS)
+					@($(MAKE)	-C		$(MLX_DIR))
+					@($(MAKE)	-C		$(LIBFT_DIR))
+					@($(CC)	$(LIBRARY)	$(MLX_LIB)	-o	$(NAME)	$(OBJS)	$(MLX_FLAGS))
 
-$(NAME)	:	$(OBJS) $(HEADER)
-			@$(MAKE) -C ./lib
-			@$(GCC) $(CFLAGS) $(OBJS) $(LIB) $(FLAG) -o ${NAME}
-			@echo "\033[0;32m-----Successful success!-----"
+$(OBJS):			$(SRCS)
+					@(mkdir -p $(OBJS_DIR))
+					@($(CC)	$(INCLUDES)	-c	$(SRCS))
+					@(mv	$(OBJS_NAME)	$(OBJS_DIR))
+clean:
+					@(make	clean -C	$(LIBFT_DIR))
+					@(make	clean -C	$(MLX_DIR))
+					@(rm 	-rf			$(OBJS))
 
-.PHONY	:	all clean fclean re
+fclean:				clean
+					@(rm	-rf	$(NAME))
+					@(rm    -rf $(LIBRARY))
+					@(rm	-rf	objs)
+					@(rm	-f $(SCREEN))
 
-all		:	$(NAME)
+re:					fclean all
 
-clean	:
-			@$(RM) $(OBJS)
-			@$(MAKE) clean -C ./lib
-			@echo "\033[0;32m-------Clean completed-------"
-
-fclean	:	clean
-			@$(RM) $(NAME)
-			@echo "\033[0;32m------Fclean completed-------"
-
-re		:	fclean all
+.PHONY:				all, clean, fclean, re, create
