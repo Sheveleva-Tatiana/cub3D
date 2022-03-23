@@ -57,6 +57,7 @@ typedef struct s_paint{
 	double	dis_x_delta;
 	double	dis_y_delta;
 	double	dis_x_side;
+	double 	texpos;
 	double	dis_y_side;
 }			t_paint;
 
