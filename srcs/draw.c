@@ -26,6 +26,36 @@ void	get_step(t_data *data, t_paint *paint)
 	}
 }
 
+void	get_side(t_data *data, t_paint  *paint)
+{
+	paint->side = 0;
+	paint->hit = 0;
+	while (paint->side == 0 && paint->hit == 0)
+	{
+		if (paint->dis_x_side > paint->dis_y_side)
+		{
+			paint->dis_x_side = paint->dis_x_side + paint->dis_x_side;
+			paint->map_x = paint->map_x + paint->step_x;
+			paint->side = 0;
+		}
+		else
+		{
+			paint->dis_y_side = paint->dis_y_side + paint->dis_y_side;
+			paint->map_y = paint->map_y + paint->step_y;
+			paint->side = 1;
+		}
+		if (data->map->map[paint->map_y][paint->map_x] == '1')
+			paint->hit = 1;
+	}
+}
+
+void	get_perp_wall(t_data *data, t_paint *paint)
+{
+	if (paint->side == 0)
+		paint->perpwalldist = (paint->dis_x_side - paint->dis_x_delta) * cos
+				((data->ply->angle - paint->angle) * PI / 180);
+}
+
 void put_wall(t_data *data, t_paint *paint)
 {
 	paint->y = 0;
@@ -45,6 +75,8 @@ void	draw_wall(t_data *data)
 	{
 		get_step(data, &paint);
 		paint.angle = paint.angle - paint.step;
+		get_side(data, &paint);
+		get_perp_wall(data, &paint);
 		put_wall(data, &paint);
 	}
 }

@@ -36,6 +36,9 @@ typedef struct s_paint{
 	double   end;
 	double   step;
 	double   angle;
+	int 	side;
+	int		hit;
+	double 	perpwalldist;
 	int   	x;
 	int   	y;
 	double   cos;
