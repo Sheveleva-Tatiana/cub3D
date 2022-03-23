@@ -46,6 +46,13 @@ void	get_side(t_data *data, t_paint  *paint)
 		}
 		if (data->map->map[paint->map_y][paint->map_x] == '1')
 			paint->hit = 1;
+		paint->wallx -= floor((paint->wallx));
+		paint->drawstart = -paint->lineheight / 2 + WIN_HEIGHT / 2;
+		if (paint->drawstart < 0)
+			paint->drawstart = 0;
+		paint->drawend = paint->lineheight / 2 + WIN_HEIGHT / 2;
+		if (paint->drawend >= WIN_HEIGHT)
+			paint->drawend = WIN_HEIGHT - 1;
 	}
 }
 
