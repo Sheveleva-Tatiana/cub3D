@@ -82,6 +82,7 @@ void	clear_and_exit(t_data *data)
 		free(data->map);
 	}
 	free(data);
+	printf("GOOD BYE, MY FRIEND! I WILL MISS YOU!\n");
 	exit (1);
 
 }

@@ -30,6 +30,28 @@
 # include "../lib/libft.h"
 # include "../mlx/mlx.h"
 
+
+typedef struct s_paint{
+	double   start;
+	double   end;
+	double   step;
+	double   angle;
+	int   	x;
+	int   	y;
+	double   cos;
+	double   sin;
+	double   delta_x;
+	double   delta_y;
+	int   map_x;
+	int   map_y;
+	int   step_x;
+	int   step_y;
+	double  dis_x_delta;
+	double  dis_y_delta;
+	double  dis_x_side;
+	double  dis_y_side;
+}    t_paint;
+
 typedef struct s_img {
 	void	*img;
 	int		*addr;
@@ -68,8 +90,17 @@ typedef struct s_data{
 	t_ply	*ply;
 }           t_data;
 
-int ft_check_name(char *name);
+void	game_hook(t_data *data);
+void	get_coordinates(t_data *data);
+
+
+void	draw(t_data *data);
+
+
+int 	ft_check_name(char *name);
 void	run_game(t_data *data);
+
+int		ft_strle(const char *str, char sym);
 
 void    init_map(char *filename, t_data *data);
 void    print_error(int i);

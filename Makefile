@@ -12,7 +12,10 @@ MLX_DIR			=	./mlx/
 MLX_LIB			=	./mlx/libmlx.a
 
 SRCS_NAME		=	main.c					\
-					run_game.c
+					run_game.c				\
+					hook.c					\
+					move_ply.c				\
+					draw.c					\
 
 MAP_SRCS		=	get_next_line.c			\
 					init_map.c				\
@@ -20,6 +23,7 @@ MAP_SRCS		=	get_next_line.c			\
 					valid_map.c				\
 					valid_map2.c			\
 					valid_map_utils.c		\
+
 
 UTILS_SRCS		= 	error.c					\
 					utils.c					\
