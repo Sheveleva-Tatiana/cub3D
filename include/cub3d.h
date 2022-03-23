@@ -34,6 +34,7 @@
 typedef struct s_paint{
 	double	start;
 	double	end;
+	int 	texx;
 	int		drawstart;
 	int		drawend;
 	double	step;
