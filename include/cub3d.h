@@ -43,6 +43,7 @@ typedef struct s_paint{
 	int   	y;
 	double   cos;
 	double   sin;
+	int 	lineheight;
 	double   delta_x;
 	double   delta_y;
 	int   map_x;

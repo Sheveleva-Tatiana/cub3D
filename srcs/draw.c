@@ -54,6 +54,11 @@ void	get_perp_wall(t_data *data, t_paint *paint)
 	if (paint->side == 0)
 		paint->perpwalldist = (paint->dis_x_side - paint->dis_x_delta) * cos
 				((data->ply->angle - paint->angle) * PI / 180);
+	else
+		paint->perpwalldist = (paint->dis_y_side - paint->dis_y_delta) * cos
+				((data->ply->angle - paint->angle) * PI / 180);
+	paint->lineheight = (int)(WIN_HEIGHT / paint->perpwalldist \
+		/ tan(60 / 2 * PI / 180));
 }
 
 void put_wall(t_data *data, t_paint *paint)
