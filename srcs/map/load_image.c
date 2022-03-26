@@ -19,6 +19,15 @@ void	load_tex(t_tex *tex, t_data *data, int flag)
 	path = load_path(flag, data);
 	if (access(path, F_OK) == -1)
 		print_error_and_exit(data, "Texture file not found\n");
+	else if (access(path, R_OK) == -1)
+		print_error_and_exit(data, "Texture file read error\n");
+	else
+		tex->path = path;
+}
+
+void	init_texture(t_tex *tex, t_data *data)
+{
+	mlx_xpm_file_to_image(data->mlx, tex->path, &tex->width, &tex->height);
 }
 
 void	load_image(t_data *data)
@@ -30,6 +39,7 @@ void	load_image(t_data *data)
 	while (i < 4)
 	{
 		load_tex(&data->map->tex[i], data, i);
+		init_texture(&data->map->tex[i], data);
 		i++;
 	}
 }
