@@ -16,6 +16,7 @@ SRCS_NAME		=	main.c					\
 					hook.c					\
 					move_ply.c				\
 					draw.c					\
+					draw_color.c			\
 
 MAP_SRCS		=	get_next_line.c			\
 					init_map.c				\
@@ -23,6 +24,7 @@ MAP_SRCS		=	get_next_line.c			\
 					valid_map.c				\
 					valid_map2.c			\
 					valid_map_utils.c		\
+					load_image.c			\
 
 
 UTILS_SRCS		= 	error.c					\

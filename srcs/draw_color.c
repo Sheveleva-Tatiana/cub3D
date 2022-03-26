@@ -11,7 +11,6 @@ void	draw_color(t_data *data)
 	paint.x = 0;
 	while (paint.angle > paint.end)
 	{
-
 		paint.angle = paint.angle - paint.step;
 		paint.x++;
 	}

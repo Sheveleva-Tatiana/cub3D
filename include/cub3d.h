@@ -122,6 +122,7 @@ void	get_coordinates(t_data *data);
 
 
 void	draw(t_data *data);
+void	draw_color(t_data *data);
 
 
 int 	ft_check_name(char *name);
@@ -145,4 +146,5 @@ int 	size_arr(char **arr);
 void	check_close_wall_inside(t_data *data);
 void	check_sym(t_data *data, int i, int j, int *err);
 void	check_next_sym(t_data *data, int i, int j, int *err);
+void	load_image(t_data *data);
 #endif
