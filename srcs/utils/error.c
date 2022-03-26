@@ -8,3 +8,9 @@ void print_error(int i)
         exit(1);
     }
 }
+
+void	print_error_and_exit(t_data *data, char *str)
+{
+	printf("%s", str);
+	clear_and_exit(data);
+}
