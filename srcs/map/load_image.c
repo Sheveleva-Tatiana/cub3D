@@ -43,7 +43,10 @@ void	load_tex(t_tex *tex, t_data *data, int flag)
 
 void	init_texture(t_tex *tex, t_data *data)
 {
-	mlx_xpm_file_to_image(data->mlx, tex->path, &tex->width, &tex->height);
+	tex->ptr = mlx_xpm_file_to_image(data->mlx, tex->path, &tex->width,
+								   &tex->height);
+	tex->data = (int *)mlx_get_data_addr(tex->ptr, &tex->bpp, &tex->size_l,
+								  &tex->endian);
 }
 
 void	load_image(t_data *data)
@@ -55,7 +58,7 @@ void	load_image(t_data *data)
 	while (i < 4)
 	{
 		load_tex(&data->map->tex[i], data, i);
-//		init_texture(&data->map->tex[i], data);
+		init_texture(&data->map->tex[i], data);
 		i++;
 	}
 }
