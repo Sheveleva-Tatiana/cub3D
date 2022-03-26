@@ -12,6 +12,14 @@ char	*load_path(int flag, t_data *data)
 		return (ft_strdup(data->map->so));
 }
 
+int	check_image_file(char *file)
+{
+	if (ft_strlen(file) > 4)
+		if (!(ft_strnstr(&file[ft_strlen(file) - 4], ".xpm", 4)))
+			return (0);
+	return (1);
+}
+
 void	load_tex(t_tex *tex, t_data *data, int flag)
 {
 	char	*path;
@@ -20,8 +28,6 @@ void	load_tex(t_tex *tex, t_data *data, int flag)
 	all_path = load_path(flag, data);
 	path = ft_substr(all_path, 0, ft_strlen(all_path) - 1);
 	if (access(path, F_OK)) {
-		printf("%s\n", getenv("PWD"));
-		printf("%s", path);
 		free(path);
 		print_error_and_exit(data, "Texture file not found\n");
 	}
@@ -31,6 +37,8 @@ void	load_tex(t_tex *tex, t_data *data, int flag)
 	}
 	else
 		tex->path = path;
+	if (!check_image_file(tex->path))
+		print_error_and_exit(data, "The file extension is not .xpm\n");
 }
 
 void	init_texture(t_tex *tex, t_data *data)
@@ -47,7 +55,7 @@ void	load_image(t_data *data)
 	while (i < 4)
 	{
 		load_tex(&data->map->tex[i], data, i);
-		init_texture(&data->map->tex[i], data);
+//		init_texture(&data->map->tex[i], data);
 		i++;
 	}
 }
