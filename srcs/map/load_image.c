@@ -58,7 +58,8 @@ void	load_image(t_data *data)
 	while (i < 4)
 	{
 		load_tex(&data->map->tex[i], data, i);
-		init_texture(&data->map->tex[i], data);
+		printf("%s", data->map->tex[i].path);
+//		init_texture(&data->map->tex[i], data);
 		i++;
 	}
 }
