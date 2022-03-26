@@ -15,15 +15,17 @@ char	*load_path(int flag, t_data *data)
 void	load_tex(t_tex *tex, t_data *data, int flag)
 {
 	char	*path;
-	char	*full_path;
+	char	*all_path;
 
-	path = load_path(flag, data);
-	if (access(path, F_OK) == -1) {
+	all_path = load_path(flag, data);
+	path = ft_substr(all_path, 0, ft_strlen(all_path) - 1);
+	if (access(path, F_OK)) {
+		printf("%s\n", getenv("PWD"));
 		printf("%s", path);
 		free(path);
 		print_error_and_exit(data, "Texture file not found\n");
 	}
-	else if (access(path, R_OK) == -1) {
+	else if (access(path, R_OK)) {
 		free(path);
 		print_error_and_exit(data, "Error reading texture file\n");
 	}
