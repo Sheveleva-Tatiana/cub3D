@@ -17,8 +17,14 @@ void	load_tex(t_tex *tex, t_data *data, int flag)
 	char	*path;
 
 	path = load_path(flag, data);
-	if (access(path, F_OK) == -1)
+	if (!(ft_strnstr(path, "/", 1))){
+		path++;
+		path = ft_strjoin(ft_strdup(getenv("PWD")), path);
+		}
+	if (access(path, F_OK) == -1) {
+		printf("%s", path);
 		print_error_and_exit(data, "Texture file not found\n");
+	}
 	else if (access(path, R_OK) == -1)
 		print_error_and_exit(data, "Error reading texture file\n");
 	else
