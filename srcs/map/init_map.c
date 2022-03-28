@@ -92,7 +92,6 @@ void    init_map(char *filename, t_data *data)
 	trim_space(data);
     data->map->count_line = count - start;
 	valid_map(data);
-	load_image(data);
 	run_game(data);
 }
 

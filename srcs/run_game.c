@@ -47,9 +47,9 @@ int	render(t_data *data)
 	if (data->active_key[53] == 1)
 		clear_and_exit(data);
 	get_coordinates(data);
-//	draw(data);
+	draw(data);
 //	draw_color(data);
-	draw_map(data);
+//	draw_map(data);
 	return (0);
 }
 
@@ -61,6 +61,7 @@ void	run_game(t_data *data)
 	data->img.addr = (int *)mlx_get_data_addr(data->img.img, \
 		&data->img.bits_per_pixel, &data->img.line_length,
 											   &data->img.endian);
+	load_image(data);
 	game_hook(data);
 	mlx_loop_hook(data->mlx, &render, data);
 	mlx_loop(data->mlx);

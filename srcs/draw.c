@@ -79,7 +79,7 @@ void	draw_ceiling(t_data *data, t_paint *paint)
 	int	color;
 	color = ((data->map->c[0]) & 0xff) + ((data->map->c[1]) & 0xff << 8) +
 			((data->map->c[2]) & 0xff << 16);
-	data->img.addr[paint->y * WIN_WIDTH + paint->x] = color;
+//	data->img.addr[paint->y * WIN_WIDTH + paint->x] = color;
 	paint->y++;
 }
 
@@ -89,18 +89,16 @@ void	draw_flour(t_data *data, t_paint *paint)
 
 	color = ((data->map->f[0]) & 0xff) + ((data->map->f[1]) & 0xff << 8) +
 			((data->map->f[2]) & 0xff << 16);
-	while (paint->y < WIN_HEIGHT)
-	{
-		data->img.addr[paint->y * WIN_WIDTH + paint->x] = color;
-		paint->y++;
-	}
+	data->img.addr[paint->y * WIN_WIDTH + paint->x] = color;
+	paint->y++;
+
 }
 
 void	draw_wall(t_data *data, t_paint *paint)
 {
 	while (paint->y < paint->drawend)
 	{
-		paint->texy = (int)paint->texpos & (300 - 1);
+		paint->texy = (int)paint->texpos & (data->map->tex->width - 1);
 		paint->texpos += paint->step;
 		if (paint->side == 1 && paint->map_y < data->ply->y)
 			paint->tn = 0;
@@ -111,7 +109,8 @@ void	draw_wall(t_data *data, t_paint *paint)
 		else
 			paint->tn = 3;
 		data->img.addr[paint->y * WIN_WIDTH + paint->x] =
-				data->map->tex[paint->tn].data[(int)(paint->texy * 300 +
+				data->map->tex[paint->tn].data[(int)(paint->texy *
+				data->map->tex->width +
 				paint->texx)];
 		paint->y++;
 	}
@@ -121,15 +120,15 @@ void put_wall(t_data *data, t_paint *paint)
 {
 	paint->y = 0;
 	draw_ceiling(data, paint);
-	paint->texx = (int)(paint->wallx * 300);
-	if ((paint->side == 0 && paint->cos > 0) || \
-		(paint->side == 1 && paint->sin < 0))
-		paint->texx = 300 - paint->texx - 1;
-	paint->step = (double)300 / paint->lineheight;
-	paint->texpos = (paint->drawstart - WIN_HEIGHT / 2 + paint->lineheight /
-			2) * paint->step;
-	draw_wall(data, paint);
-	draw_flour(data, paint);
+//	paint->texx = (int)(paint->wallx * data->map->tex->height);
+//	if ((paint->side == 0 && paint->cos > 0) || \
+//		(paint->side == 1 && paint->sin < 0))
+//		paint->texx = data->map->tex->width - paint->texx - 1;
+//	paint->step = (double)data->map->tex->height / paint->lineheight;
+//	paint->texpos = (paint->drawstart - WIN_HEIGHT / 2 + paint->lineheight /
+//			2) * paint->step;
+//	draw_wall(data, paint);
+//	draw_flour(data, paint);
 }
 
 void	wall(t_data *data)
@@ -146,9 +145,9 @@ void	wall(t_data *data)
 		get_step(data, &paint);
 		get_side(data, &paint);
 		get_perp_wall(data, &paint);
-//		put_wall(data, &paint);
-		data->ply->zbuffer[paint.x] = paint.perpwalldist / cos(
-				(data->ply->angle - paint.angle) * PI / 180);
+		put_wall(data, &paint);
+//		data->ply->zbuffer[paint.x] = paint.perpwalldist / cos(
+//				(data->ply->angle - paint.angle) * PI / 180);
 		paint.angle = paint.angle - paint.step;
 		paint.x++;
 	}
