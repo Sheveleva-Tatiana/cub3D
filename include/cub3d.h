@@ -90,7 +90,7 @@ typedef struct s_ply{
 	double 	y;
 	int 	pos;
 	double 	angle;
-	double 	*zbuffer;
+	double 	*buffer;
 	double  move_k;
 	double 	rotate_k;
 	double 	fov;
