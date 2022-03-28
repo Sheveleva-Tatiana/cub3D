@@ -79,10 +79,10 @@ void	draw_ceiling(t_data *data, t_paint *paint)
 	int	color;
 	color = ((data->map->c[0]) & 0xff) + ((data->map->c[1]) & 0xff << 8) +
 			((data->map->c[2]) & 0xff << 16);
-	while (paint->y < paint->drawstart) {
-		data->img.addr[paint->y * WIN_WIDTH + paint->x] = color;
-		paint->y++;
-	}
+//	while (paint->y < paint->drawstart) {
+//		data->img.addr[paint->y * WIN_WIDTH + paint->x] = color;
+//		paint->y++;
+//	}
 }
 
 void	draw_flour(t_data *data, t_paint *paint)
@@ -123,16 +123,16 @@ void	draw_wall(t_data *data, t_paint *paint)
 void put_wall(t_data *data, t_paint *paint)
 {
 	paint->y = 0;
-//	draw_ceiling(data, paint);
+	draw_ceiling(data, paint);
 	paint->texx = (int)(paint->wallx * data->map->tex->height);
-	if ((paint->side == 0 && paint->cos > 0) || \
-		(paint->side == 1 && paint->sin < 0))
+	if ((paint->side == 0 && paint->cos > 0) ||	(paint->side == 1 &&
+	paint->sin < 0))
 		paint->texx = data->map->tex->width - paint->texx - 1;
 	paint->step = (double)data->map->tex->height / paint->lineheight;
 	paint->texpos = (paint->drawstart - WIN_HEIGHT / 2 + paint->lineheight /
 			2) * paint->step;
 	draw_wall(data, paint);
-//	draw_flour(data, paint);
+	draw_flour(data, paint);
 }
 
 void	wall(t_data *data)
@@ -149,9 +149,9 @@ void	wall(t_data *data)
 		get_step(data, &paint);
 		get_side(data, &paint);
 		get_perp_wall(data, &paint);
-//		put_wall(data, &paint);
-//		data->ply->buffer[paint.x] = paint.perpwalldist / cos(
-//				(data->ply->angle - paint.angle) * PI / 180);
+		put_wall(data, &paint);
+		data->ply->buffer[paint.x] = paint.perpwalldist / cos(
+				(data->ply->angle - paint.angle) * PI / 180);
 		paint.angle = paint.angle - paint.step;
 		paint.x++;
 	}
