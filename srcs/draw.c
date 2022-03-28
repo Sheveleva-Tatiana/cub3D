@@ -30,30 +30,27 @@ void	get_side(t_data *data, t_paint  *paint)
 {
 	paint->side = 0;
 	paint->hit = 0;
-	while (paint->side == 0 && paint->hit == 0)
+	if (paint->dis_x_side > paint->dis_y_side)
 	{
-		if (paint->dis_x_side > paint->dis_y_side)
-		{
-			paint->dis_x_side = paint->dis_x_side + paint->dis_x_side;
-			paint->map_x = paint->map_x + paint->step_x;
-			paint->side = 0;
-		}
-		else
-		{
-			paint->dis_y_side = paint->dis_y_side + paint->dis_y_side;
-			paint->map_y = paint->map_y + paint->step_y;
-			paint->side = 1;
-		}
-		if (data->map->map[paint->map_y][paint->map_x] == '1')
-			paint->hit = 1;
-		paint->wallx -= floor((paint->wallx));
-		paint->drawstart = -paint->lineheight / 2 + WIN_HEIGHT / 2;
-		if (paint->drawstart < 0)
-			paint->drawstart = 0;
-		paint->drawend = paint->lineheight / 2 + WIN_HEIGHT / 2;
-		if (paint->drawend >= WIN_HEIGHT)
-			paint->drawend = WIN_HEIGHT - 1;
+		paint->dis_x_side = paint->dis_x_side + paint->dis_x_side;
+		paint->map_x = paint->map_x + paint->step_x;
+		paint->side = 0;
 	}
+	else
+	{
+		paint->dis_y_side = paint->dis_y_side + paint->dis_y_side;
+		paint->map_y = paint->map_y + paint->step_y;
+		paint->side = 1;
+	}
+	if (data->map->map[paint->map_y][paint->map_x] == '1')
+		paint->hit = 1;
+	paint->wallx -= floor((paint->wallx));
+	paint->drawstart = -paint->lineheight / 2 + WIN_HEIGHT / 2;
+	if (paint->drawstart < 0)
+		paint->drawstart = 0;
+	paint->drawend = paint->lineheight / 2 + WIN_HEIGHT / 2;
+	if (paint->drawend >= WIN_HEIGHT)
+		paint->drawend = WIN_HEIGHT - 1;
 }
 
 void	get_perp_wall(t_data *data, t_paint *paint)
@@ -128,7 +125,7 @@ void put_wall(t_data *data, t_paint *paint)
 	if ((paint->side == 0 && paint->cos > 0) ||	(paint->side == 1 &&
 	paint->sin < 0))
 		paint->texx = data->map->tex->width - paint->texx - 1;
-	paint->step = (double)data->map->tex->height / paint->lineheight;
+//	paint->step = (double)data->map->tex->height / paint->lineheight;
 	paint->texpos = (paint->drawstart - WIN_HEIGHT / 2 + paint->lineheight /
 			2) * paint->step;
 	draw_wall(data, paint);
@@ -141,7 +138,8 @@ void	wall(t_data *data)
 
 	paint.start = data->ply->angle + 30;
 	paint.end = data->ply->angle - 30;
-	paint.step = 60 / WIN_WIDTH;
+//	paint.step = 60 / WIN_WIDTH;
+	paint.step  = 0.1;
 	paint.angle = paint.start;
 	paint.x = 0;
 	while (paint.angle > paint.end)

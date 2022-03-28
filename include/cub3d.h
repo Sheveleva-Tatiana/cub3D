@@ -17,7 +17,7 @@
 # define W 3
 # define E 4
 # define PI 3.14159265
-# define WIN_WIDTH 1410
+# define WIN_WIDTH 1210
 # define WIN_HEIGHT 700
 
 # include <stdio.h>
