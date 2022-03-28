@@ -17,8 +17,8 @@
 # define W 3
 # define E 4
 # define PI 3.14159265
-# define WIN_WIDTH 1500
-# define WIN_HEIGHT 640
+# define WIN_WIDTH 1410
+# define WIN_HEIGHT 700
 
 # include <stdio.h>
 # include <unistd.h>
@@ -67,11 +67,11 @@ typedef struct s_tex
 {
 	char	*path;
 	void	*ptr;
-	int		*data;
+	int 	*data;
 	int		width;
 	int		height;
 	int		bpp;
-	int		size_l;
+	int		size;
 	int		endian;
 	int		count_width;
 }			t_tex;
@@ -148,4 +148,5 @@ void	check_sym(t_data *data, int i, int j, int *err);
 void	check_next_sym(t_data *data, int i, int j, int *err);
 void	load_image(t_data *data);
 void	print_error_and_exit(t_data *data, char *str);
+void	get_step(t_data *data, t_paint *paint);
 #endif

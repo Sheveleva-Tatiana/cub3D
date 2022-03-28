@@ -45,7 +45,7 @@ void	init_texture(t_tex *tex, t_data *data)
 {
 	tex->ptr = mlx_xpm_file_to_image(data->mlx, tex->path, &tex->width,
 								   &tex->height);
-	tex->data = (int *)mlx_get_data_addr(tex->ptr, &tex->bpp, &tex->size_l,
+	tex->data = (int *)mlx_get_data_addr(tex->ptr, &tex->bpp, &tex->size,
 								  &tex->endian);
 }
 
@@ -53,13 +53,11 @@ void	load_image(t_data *data)
 {
 	int i;
 
-	i = 0;
+	i = -1;
 	data->map->tex = (t_tex *)malloc(sizeof(t_tex) * 4);
-	while (i < 4)
+	while (++i < 4)
 	{
 		load_tex(&data->map->tex[i], data, i);
-		printf("%s", data->map->tex[i].path);
 //		init_texture(&data->map->tex[i], data);
-		i++;
 	}
 }

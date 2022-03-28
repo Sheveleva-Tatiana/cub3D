@@ -146,7 +146,7 @@ void	wall(t_data *data)
 		get_step(data, &paint);
 		get_side(data, &paint);
 		get_perp_wall(data, &paint);
-		put_wall(data, &paint);
+//		put_wall(data, &paint);
 		data->ply->zbuffer[paint.x] = paint.perpwalldist / cos(
 				(data->ply->angle - paint.angle) * PI / 180);
 		paint.angle = paint.angle - paint.step;
@@ -157,4 +157,5 @@ void	wall(t_data *data)
 void	draw(t_data *data)
 {
 	wall(data);
+	mlx_put_image_to_window(data->mlx, data->win, data->img.img, 0, 0);
 }

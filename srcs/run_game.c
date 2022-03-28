@@ -11,7 +11,6 @@ void	ft_pixel_put(int y, int x, t_data *data, unsigned int color)
 	}
 }
 
-
 void	draw_map(t_data *data)
 {
 	int x, y = -1;
@@ -38,7 +37,7 @@ void	draw_map(t_data *data)
 			b -= 0.1 * sin(h * PI / 180);
 			mlx_pixel_put(data->mlx, data->win, (a * 30), (b * 30),
 						  0x7FFFD4);
-			}
+		}
 		h += 1;
 	}
 }
