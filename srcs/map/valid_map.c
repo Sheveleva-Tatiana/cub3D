@@ -61,6 +61,7 @@ void	check_player(t_data *data)
 			if (ft_strchr("NSEW", data->map->map[i][j])) {
 				put_player(i, j, data);
 				count++;
+				data->map->map[i][j] = '0';
 			}
 			j++;
 		}
