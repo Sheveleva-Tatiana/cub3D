@@ -17,7 +17,7 @@
 # define W 3
 # define E 4
 # define PI 3.14159265
-# define WIN_WIDTH 1210
+# define WIN_WIDTH 1200
 # define WIN_HEIGHT 500
 
 # include <stdio.h>
@@ -123,6 +123,7 @@ void	get_coordinates(t_data *data);
 
 void	draw(t_data *data);
 void	draw_color(t_data *data);
+void	ft_pixel_put(int y, int x, t_data *data, unsigned int color);
 
 
 int 	ft_check_name(char *name);

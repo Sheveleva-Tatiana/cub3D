@@ -18,12 +18,15 @@ void	close_wall_in_utils(int i, t_data *data, int *err, int j)
 
 void	wall_len_next_line(int i, t_data *data, int *err, int j)
 {
-	int size;
-	int next_size;
+	size_t size;
+	size_t next_size;
 
 	size = ft_strlen(data->map->map[i]) - 2;
-	if (data->map->map[i + 1])
+	if (data->map->map[i + 1]) {
 		next_size = ft_strlen(data->map->map[i + 1]) - 2;
+		if (data->map->map[i + 1][next_size + 2] == '\0' )
+			next_size++;
+	}
 	else
 		return ;
 	if (size < next_size)
