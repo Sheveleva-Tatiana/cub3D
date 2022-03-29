@@ -48,8 +48,8 @@ int	render(t_data *data)
 		clear_and_exit(data);
 	get_coordinates(data);
 //	draw(data);
-//	draw_color(data);
-	draw_map(data);
+	draw_color(data);
+//	draw_map(data);
 	return (0);
 }
 
