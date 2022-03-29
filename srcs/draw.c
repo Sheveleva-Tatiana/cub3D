@@ -118,8 +118,8 @@ void	draw_wall(t_data *data,	t_map *map, t_paint *paint)
 			paint->tn = 2;
 		else
 			paint->tn = 3;
-		data->img.addr[paint->y * WIN_WIDTH + paint->x] = \
-			map->tex[paint->tn].data[paint->texy * map->tex->width + paint->texx];
+		data->img.addr[paint->y * WIN_WIDTH + paint->x] = map->tex[paint->tn]
+				.data[paint->texy * map->tex->width + paint->texx];
 		paint->y++;
 	}
 }
@@ -133,8 +133,8 @@ void put_wall(t_data *data, t_paint *paint)
 		(paint->side == 1 && paint->sin < 0))
 		paint->texx = data->map->tex->width - paint->texx - 1;
 	paint->step = (double)data->map->tex->height / paint->lineheight;
-	paint->texpos = (paint->drawstart - \
-			WIN_HEIGHT / 2 + paint->lineheight / 2) * paint->step;
+	paint->texpos = (paint->drawstart -	WIN_HEIGHT / 2 + paint->lineheight /
+			2) * paint->step;
 	draw_wall(data, data->map, paint);
 	draw_flour(data, paint);
 }
@@ -154,8 +154,8 @@ void	wall(t_data *data)
 		get_side(data, data->map, &paint, data->ply);
 		get_perp_wall(data, &paint);
 		put_wall(data, &paint);
-		data->ply->buffer[paint.x] = paint.perpwalldist / \
-			cos((data->ply->angle - paint.angle) * PI / 180);
+		data->ply->buffer[paint.x] = paint.perpwalldist / cos(
+				(data->ply->angle - paint.angle) * PI / 180);
 		paint.angle -= paint.step;
 		paint.x++;
 	}
