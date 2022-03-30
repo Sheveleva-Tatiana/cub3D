@@ -28,16 +28,24 @@ void	draw_map(t_data *data)
 	}
 	mlx_pixel_put(data->mlx, data->win, x * 30, y * 30, 0x00FFFF);
 	h = data->ply->angle - 30;
+//	if (h > 360)
+//		h = h - 360;
+//	if (h < 0)
+//		h = 360 + h;
 	while (h < data->ply->angle + 31)
 	{
 		a = data->ply->x;
 		b = data->ply->y;
 		while (a > 0 && b > 0 && data->map->map[(int) b][(int) a] != '1') {
-			a += 0.1 * cos(h * PI / 180);
-			b -= 0.1 * sin(h * PI / 180);
-			mlx_pixel_put(data->mlx, data->win, (a * 30), (b * 30),
-						  0x7FFFD4);
+//			mlx_pixel_put(data->mlx, data->win, (a * 30), (b * 30),
+//						  0x7FFFD4);
+			a += 0.095 * cos(h * PI / 180);
+			b -= 0.095 * sin(h * PI / 180);
+//			b -= tan(h * PI / 180) * cos(h * PI / 180);
+//			a += tan((90 - h) * PI / 180) * sin(h * PI / 180);
 		}
+		mlx_pixel_put(data->mlx, data->win, (a * 30), (b * 30),
+						  0x7FFFD4);
 		h += 1;
 	}
 }
@@ -47,8 +55,8 @@ int	render(t_data *data)
 	if (data->active_key[53] == 1)
 		clear_and_exit(data);
 	get_coordinates(data);
-	draw(data);
-//	draw_color(data);
+//	draw(data);
+	draw_color(data);
 //	draw_map(data);
 	return (0);
 }
