@@ -41,8 +41,6 @@ void	draw_map(t_data *data)
 //						  0x7FFFD4);
 			a += 0.095 * cos(h * PI / 180);
 			b -= 0.095 * sin(h * PI / 180);
-//			b -= tan(h * PI / 180) * cos(h * PI / 180);
-//			a += tan((90 - h) * PI / 180) * sin(h * PI / 180);
 		}
 		mlx_pixel_put(data->mlx, data->win, (a * 30), (b * 30),
 						  0x7FFFD4);
@@ -55,7 +53,6 @@ int	render(t_data *data)
 	if (data->active_key[53] == 1)
 		clear_and_exit(data);
 	get_coordinates(data);
-//	draw(data);
 	draw_color(data);
 //	draw_map(data);
 	return (0);

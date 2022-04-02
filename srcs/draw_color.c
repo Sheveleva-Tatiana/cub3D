@@ -10,6 +10,10 @@ void	draw_color(t_data *data)
 	paint.step = 1;
 	paint.angle = paint.start;
 	paint.x = 0;
+//	t_img img;
+//	img.img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+//	img.addr = (int*)mlx_get_data_addr(img.img, &img.bits_per_pixel, &img
+//	.line_length, &img.endian);
 	double h = data->ply->angle - 30;
 	while (h < data->ply->angle + 31) {
 		double a = data->ply->x;
@@ -32,6 +36,7 @@ void	draw_color(t_data *data)
 			b += (data->ply->y - (int)b);
 		mlx_pixel_put(data->mlx, data->win, (a * 30), (b * 30),
 						  0x7FFFD4);
+
 		h += 1;
 	}
 }
