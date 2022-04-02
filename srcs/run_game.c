@@ -53,7 +53,8 @@ int	render(t_data *data)
 	if (data->active_key[53] == 1)
 		clear_and_exit(data);
 	get_coordinates(data);
-	draw_color(data);
+	draw(data);
+//	draw_color(data);
 //	draw_map(data);
 	return (0);
 }
