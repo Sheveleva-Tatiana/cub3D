@@ -57,7 +57,7 @@ void	draw_color(t_data *data)
 		double vectorX = a - data->ply->x;
 		double vectorY = b - data->ply->y;
 		double vectorLength = sqrt(pow(vectorX, 2) + pow(vectorY, 2));
-		vectorLength = vectorLength/3;
+		vectorLength = vectorLength/5;
 
 		int j = (WIN_HEIGHT / 2) - ((WIN_HEIGHT/vectorLength) / 2);
 		int l = WIN_HEIGHT/vectorLength;
