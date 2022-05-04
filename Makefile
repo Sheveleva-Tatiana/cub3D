@@ -11,21 +11,19 @@ LIBRARY			=	./lib/libft.a
 MLX_DIR			=	./mlx/
 MLX_LIB			=	./mlx/libmlx.a
 
-SRCS_NAME		=	main.c					\
-					run_game.c				\
+SRCS_NAME		=	1_main.c				\
+					2_run_game.c			\
 					hook.c					\
 					move_ply.c				\
-					draw.c					\
-					draw_color.c			\
+					draw_petr.c				\
 
-MAP_SRCS		=	get_next_line.c			\
-					init_map.c				\
-					read_map.c				\
-					valid_map.c				\
-					valid_map2.c			\
+MAP_SRCS		=	1_init_map.c 			\
+					2_read_map.c			\
+					3_valid_map.c			\
+					4_valid_map2.c			\
 					valid_map_utils.c		\
 					load_image.c			\
-
+					get_next_line.c			\
 
 UTILS_SRCS		= 	error.c					\
 					utils.c					\

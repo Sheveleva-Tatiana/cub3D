@@ -52,8 +52,6 @@ int		get_start_line(char *file, t_data *data)
 int     get_count_line(char *file, int *count)
 {
     int		fd;
-    int		b;
-	char	buf;
 
     fd = open(file, O_RDONLY);
     if (fd == -1)
@@ -80,7 +78,6 @@ void    init_map(char *filename, t_data *data)
 {
     int count;
 	int	start;
-	int i = 0;
 
     count = 0;
 	data = malloc(sizeof(t_data));
@@ -92,6 +89,7 @@ void    init_map(char *filename, t_data *data)
 	trim_space(data);
     data->map->count_line = count - start;
 	valid_map(data);
+	init_camera_plane(data);
 	run_game(data);
 }
 

@@ -91,3 +91,27 @@ void	trim_space(t_data *data)
 	}
 
 }
+
+void	init_camera_plane(t_data *data)
+{
+	if (data->dir_x == 0 && data->dir_y == -1)
+	{
+		data->plane_x = 0.66;
+		data->plane_y = 0;
+	}
+	else if (data->dir_x  == 0 && data->dir_y == 1)
+	{
+		data->plane_x = -0.66;
+		data->plane_y = 0;
+	}
+	else if (data->dir_y == 0 && data->dir_x == -1)
+	{
+		data->plane_x = 0;
+		data->plane_y = -0.66;
+	}
+	else if (data->dir_y == 0 && data->dir_x == 1)
+	{
+		data->plane_x = 0;
+		data->plane_y = 0.66;
+	}
+}

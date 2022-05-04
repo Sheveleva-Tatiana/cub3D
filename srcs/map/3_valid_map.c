@@ -60,6 +60,7 @@ void	check_player(t_data *data)
 		while (data->map->map[i][j]) {
 			if (ft_strchr("NSEW", data->map->map[i][j])) {
 				put_player(i, j, data);
+				init_direction(i, j, data);
 				count++;
 				data->map->map[i][j] = '0';
 			}

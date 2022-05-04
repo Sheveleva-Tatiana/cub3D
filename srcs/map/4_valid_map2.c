@@ -81,3 +81,27 @@ void	check_close_wall_inside(t_data *data)
 		clear_and_exit(data);
 	}
 }
+
+void	init_direction(int y, int x, t_data *o)
+{
+	if (o->map->map[y][x] == 'N')
+	{
+		o->dir_y = -1;
+		o->dir_x = 0;
+	}
+	else if (o->map->map[y][x] == 'S')
+	{
+		o->dir_y = 1;
+		o->dir_x = 0;
+	}
+	else if (o->map->map[y][x] == 'E')
+	{
+		o->dir_y = 0;
+		o->dir_x = 1;
+	}
+	else if (o->map->map[y][x] == 'W')
+	{
+		o->dir_y = 0;
+		o->dir_x = -1;
+	}
+}

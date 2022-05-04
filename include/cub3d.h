@@ -19,6 +19,10 @@
 # define PI 3.14159265
 # define WIN_WIDTH 1200
 # define WIN_HEIGHT 500
+# define WALL_NORTH 0
+# define WALL_SOUTH 1
+# define WALL_WEST 2
+# define WALL_EAST 3
 
 # include <stdio.h>
 # include <unistd.h>
@@ -79,7 +83,7 @@ typedef struct s_tex
 
 typedef struct s_img {
 	void	*img;
-	int		*addr;
+	char	*data;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -111,15 +115,45 @@ typedef struct s_map{
 typedef struct s_data{
     t_map   *map;
     void 	*mlx;
-	t_img 	img;
+	t_img 	*img;
     void 	*win;
 	char 	*active_key;
 	t_ply	*ply;
+	double	wall_x;
+	int		tex_x;
+	int		tex_y;
+	int		tex_w;
+	int		tex_h;
+	int		wall_side;
+	double	dir_y;
+	double	dir_x;
+	double	camera_x;
+	double	ray_dir_x;
+	double	ray_dir_y;
+	double	plane_x;
+	double	plane_y;
+	int 	map_x;
+	int		map_y;
+	int 	delta_dist_x;
+	int 	delta_dist_y;
+	int		step_x;
+	double 	side_dist_x;
+	int		step_y;
+	double 	side_dist_y;
+	double	perp_wall_dist;
+	double	dist;
+	int		draw_start;
+	int		draw_end;
+
 }           t_data;
 
 void	game_hook(t_data *data);
 void	get_coordinates(t_data *data);
 
+void	init_camera_plane(t_data *data);
+
+void	draw_petr(t_data *data);
+void	init_direction(int y, int x, t_data *o);
 
 void	draw(t_data *data);
 void	draw_color(t_data *data);
