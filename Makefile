@@ -13,9 +13,9 @@ MLX_LIB			=	./mlx/libmlx.a
 
 SRCS_NAME		=	1_main.c				\
 					2_run_game.c			\
+					3_draw.c				\
 					hook.c					\
 					move_ply.c				\
-					draw_petr.c				\
 
 MAP_SRCS		=	1_init_map.c 			\
 					2_read_map.c			\

@@ -74,7 +74,16 @@ void	init_active_key(t_data *data)
 		data->active_key[i++] = 0;
 }
 
-void    init_map(char *filename, t_data *data)
+void	rgb_to_hex(t_data *data)
+{
+	data->map->f_color = ((data->map->f[0]) & 0xff) + ((data->map->f[1]) & 0xff<< 8) +
+			((data->map->f[2]) & 0xff << 16);
+	data->map->c_color = ((data->map->c[0]) & 0xff) + ((data->map->c[1]) &
+			0xff << 8) + ((data->map->c[2]) & 0xff << 16);
+}
+
+
+void    lets_start(char *filename, t_data *data)
 {
     int count;
 	int	start;
@@ -90,6 +99,7 @@ void    init_map(char *filename, t_data *data)
     data->map->count_line = count - start;
 	valid_map(data);
 	init_camera_plane(data);
+	rgb_to_hex(data);
 	run_game(data);
 }
 

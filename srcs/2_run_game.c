@@ -44,12 +44,13 @@ void	draw_map(t_data *data)
 	}
 }
 
-int	render(t_data *data)
+int	render(void *param)
 {
-	if (data->active_key[53] == 1)
-		clear_and_exit(data);
-	get_coordinates(data);
-	draw_petr(data);
+	t_data	*data;
+
+	data = (t_data *)param;
+	moving(data);
+	draw(data);
 	draw_map(data);
 	return (0);
 }
@@ -62,8 +63,8 @@ void	run_game(t_data *data)
 	data->img->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
 	data->img->data = mlx_get_data_addr(data->img->img, \
 		&data->img->bits_per_pixel, &data->img->line_length,&data->img->endian);
-//	load_image(data);
+	load_image(data);
 	game_hook(data);
-	mlx_loop_hook(data->mlx, &render, data);
+	mlx_loop_hook(data->mlx, &render, (void *)data);
 	mlx_loop(data->mlx);
 }

@@ -17,7 +17,7 @@ int main(int ac, char **av)
     t_data  data;
 
     if (ac == 2 && ft_check_name(av[1]))
-		init_map(av[1], &data);
+		 lets_start(av[1], &data);
     else
         write(2, "Error : Invalid arguments\n", 26);
     return (0);

@@ -64,13 +64,15 @@ void	player_rotate(t_data *data)
 	}
 }
 
-void	get_coordinates(t_data *data)
+void	moving(t_data *data)
 {
 	double x;
 	double y;
 
 	x = data->ply->move_k * cos(data->ply->angle * PI / 180);
 	y = -data->ply->move_k * sin(data->ply->angle * PI / 180);
+	if (data->active_key[53] == 1)
+		clear_and_exit(data);
 	player_up_down(x, y, data);
 	player_left_right(x, y, data);
 	player_rotate(data);

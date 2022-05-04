@@ -22,8 +22,8 @@
 
 void	put_player(int i, int j, t_data *data)
 {
-	data->ply->x = j;
-	data->ply->y = i;
+	data->ply->x = j + 0.5;
+	data->ply->y = i + 0.5;
 	if (ft_strchr("N", data->map->map[i][j])) {
 		data->ply->pos = N;
 		data->ply->angle = 90;
@@ -41,7 +41,7 @@ void	put_player(int i, int j, t_data *data)
 		data->ply->angle = 0;
 	}
 	data->ply->move_k = 0.2;
-	data->ply->rotate_k = 5.5;
+	data->ply->rotate_k = 1.5;
 	data->ply->fov = 60;
 	data->ply->buffer = (double *)malloc(sizeof(double) * WIN_WIDTH);
 }

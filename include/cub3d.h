@@ -35,37 +35,37 @@
 # include "../mlx/mlx.h"
 
 
-typedef struct s_paint{
-	double	start;
-	double	end;
-	int 	texx;
-	int		drawstart;
-	int		drawend;
-	double	step;
-	int 	texy;
-	double	angle;
-	int		side;
-	int		hit;
-	double	wallx;
-	double	perpwalldist;
+typedef struct s_draw{
 	int		x;
-	int		tn;
 	int		y;
+	double	angle;
+	double	angle_start;
+	double	angle_end;
+	double	angle_step;
 	double	cos;
 	double	sin;
+	double	deltadistx;
+	double	deltadisty;
+	double	sidedistx;
+	double	sidedisty;
+	int		stepx;
+	int		stepy;
+	int		mapx;
+	int		mapy;
+	int		hit;
+	int		door;
+	int		side;
+	double	perpwalldist;
 	int		lineheight;
-	double	delta_x;
-	double	delta_y;
-	int		map_x;
-	int		map_y;
-	int		step_x;
-	int		step_y;
-	double	dis_x_delta;
-	double	dis_y_delta;
-	double	dis_x_side;
-	double 	texpos;
-	double	dis_y_side;
-}			t_paint;
+	double	wallx;
+	int		drawstart;
+	int		drawend;
+	int		texx;
+	double	step;
+	double	texpos;
+	int		texy;
+	int		tn;
+}			t_draw;
 
 typedef struct s_tex
 {
@@ -83,7 +83,7 @@ typedef struct s_tex
 
 typedef struct s_img {
 	void	*img;
-	char	*data;
+	int	*data;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
@@ -108,6 +108,8 @@ typedef struct s_map{
 	char	*ea;
 	int 	f[3];
 	int 	c[3];
+	int 	c_color;
+	int		f_color;
 	t_tex	*tex;
     int     count_line;
 }           t_map;
@@ -148,15 +150,13 @@ typedef struct s_data{
 }           t_data;
 
 void	game_hook(t_data *data);
-void	get_coordinates(t_data *data);
+void	moving(t_data *data);
 
 void	init_camera_plane(t_data *data);
 
-void	draw_petr(t_data *data);
 void	init_direction(int y, int x, t_data *o);
 
-void	draw(t_data *data);
-void	draw_color(t_data *data);
+void		draw(t_data *data);
 void	ft_pixel_put(int y, int x, t_data *data, unsigned int color);
 
 
@@ -165,7 +165,7 @@ void	run_game(t_data *data);
 
 int		ft_strle(const char *str, char sym);
 
-void    init_map(char *filename, t_data *data);
+void    lets_start(char *filename, t_data *data);
 void    print_error(int i);
 char	*ft_subst(char *str, int s, int l, int flag);
 char	*get_next_line(int fd);
@@ -183,5 +183,4 @@ void	check_sym(t_data *data, int i, int j, int *err);
 void	check_next_sym(t_data *data, int i, int j, int *err);
 void	load_image(t_data *data);
 void	print_error_and_exit(t_data *data, char *str);
-void	get_step(t_data *data, t_paint *paint);
 #endif
