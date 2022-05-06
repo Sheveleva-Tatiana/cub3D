@@ -7,7 +7,7 @@ int	check_line(char *line, t_data *data)
 
 	i = 0;
 	l = ft_strtrim(line, " ");
-	free (line);
+	free(line);
 	if (ft_strlen(l) > 2) {
 		if (ft_strnstr(l, "NO", 2))
 			data->map->no = ft_substr(l, 2, ft_strlen(l));
@@ -24,6 +24,7 @@ int	check_line(char *line, t_data *data)
 		else
 			i = 1;
 	}
+	free(l);
 	if (i == 1)
 		return (0);
 	return (1);
@@ -36,6 +37,8 @@ int		get_start_line(char *file, t_data *data)
 	int 	i;
 
 	data->map = malloc(sizeof(t_map));
+	if(!data->map)
+		print_error_and_exit(data, "Malloc error");
 	init_struct_map(data);
 	fd = open(file, O_RDONLY);
 	line = get_next_line(fd);
@@ -52,13 +55,20 @@ int		get_start_line(char *file, t_data *data)
 int     get_count_line(char *file, int *count)
 {
     int		fd;
+	char 	*line;
 
     fd = open(file, O_RDONLY);
     if (fd == -1)
         return (-1);
 	(*count) = 0;
-    while(get_next_line(fd))
+	line = get_next_line(fd);
+    while(line)
+	{
+		free(line);
+		line = get_next_line(fd);
 		(*count)++;
+	}
+	free(line);
     close(fd);
     return (1);
 }
@@ -69,9 +79,6 @@ void	init_active_key(t_data *data)
 
 	i = 0;
 	data->ply = malloc(sizeof(t_ply));
-	data->active_key = malloc(sizeof(char) * 256);
-	while(i < 256)
-		data->active_key[i++] = 0;
 }
 
 void	rgb_to_hex(t_data *data)
@@ -82,6 +89,36 @@ void	rgb_to_hex(t_data *data)
 			0xff << 8) + ((data->map->c[2]) & 0xff << 16);
 }
 
+void	free_all(t_data *data)
+{
+	int i;
+
+	i = 0;
+	if(data)
+	{
+		if (data->map)
+		{
+			while (data->map->map[i])
+				free(data->map->map[i++]);
+			free(data->map->map);
+			free(data->map->ea);
+			free(data->map->no);
+			free(data->map->so);
+			free(data->map->we);
+			i = 0;
+			if (data->map->tex)
+				free(data->map->tex);
+			while (i < 4 && data->map->tex[i].path)
+				free(data->map->tex[i++].path);
+			free(data->map);
+		}
+		if (data->ply)
+			free(data->ply);
+		if (data->img)
+			free(data->img);
+		free(data);
+	}
+}
 
 void    lets_start(char *filename, t_data *data)
 {
@@ -90,10 +127,12 @@ void    lets_start(char *filename, t_data *data)
 
     count = 0;
 	data = malloc(sizeof(t_data));
+	if(!data)
+		print_error_and_exit(data, "Malloc error");
 	init_active_key(data);
 	start = get_start_line(filename, data);
     if (get_count_line(filename, &count) == -1)
-        print_error(1);
+		print_error_and_exit(data, "Operation file corrupted");
 	copy_map(filename, start, data, count);
 	trim_space(data);
     data->map->count_line = count - start;

@@ -27,12 +27,11 @@ void	load_tex(t_tex *tex, t_data *data, int flag)
 
 	all_path = load_path(flag, data);
 	path = ft_substr(all_path, 0, ft_strlen(all_path) - 1);
+	free(all_path);
 	if (access(path, F_OK)) {
-		free(path);
 		print_error_and_exit(data, "Texture file not found\n");
 	}
 	else if (access(path, R_OK)) {
-		free(path);
 		print_error_and_exit(data, "Error reading texture file\n");
 	}
 	else
@@ -45,8 +44,12 @@ void	init_texture(t_tex *tex, t_data *data)
 {
 	tex->ptr = mlx_xpm_file_to_image(data->mlx, tex->path, &tex->width,
 								   &tex->height);
+	if (!tex->ptr)
+		print_error_and_exit(data, "Error cub->map->tex[i].ptr");
 	tex->data = (int *)mlx_get_data_addr(tex->ptr, &tex->bpp, &tex->size,
 								  &tex->endian);
+	if (!tex->data)
+		print_error_and_exit(data, "Error cub->map->tex[i].data");
 }
 
 void	load_image(t_data *data)

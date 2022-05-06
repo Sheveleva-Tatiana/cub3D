@@ -55,16 +55,45 @@ int	render(void *param)
 	return (0);
 }
 
+int	start_game(int keycode, t_data *data)
+{
+	if (keycode == 36)
+	{
+		mlx_destroy_image(data->mlx, data->img->img2);
+		data->img->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
+		data->img->data = mlx_get_data_addr(data->img->img, \
+        &data->img->bits_per_pixel, &data->img->line_length,
+											&data->img->endian);
+		game_hook(data);
+		mlx_loop_hook(data->mlx, &render, (void *) data);
+	}
+	if (keycode == 53)
+		clear_and_exit(data);
+}
+
+int animation(t_data *data)
+{
+	int 	w, h;
+	static int times;
+
+	if (times % 30 == 0)
+		data->img->img2 = mlx_xpm_file_to_image(data->mlx, "./tex/begin1"
+														   ".xpm",&w, &h);
+	if (times % 60 == 0)
+		data->img->img2 = mlx_xpm_file_to_image(data->mlx, "./tex/begin2"
+														   ".xpm",&w, &h);
+	mlx_put_image_to_window(data->mlx, data->win, data->img->img2, 0, 0);
+	mlx_hook(data->win, 2, 1L << 0, start_game, data);
+	times++;
+}
+
 void	run_game(t_data *data)
 {
 	data->mlx = mlx_init();
 	data->win = mlx_new_window(data->mlx, WIN_WIDTH, WIN_HEIGHT, "cub3D");
 	data->img = malloc(sizeof(t_img));
-	data->img->img = mlx_new_image(data->mlx, WIN_WIDTH, WIN_HEIGHT);
-	data->img->data = mlx_get_data_addr(data->img->img, \
-		&data->img->bits_per_pixel, &data->img->line_length,&data->img->endian);
 	load_image(data);
-	game_hook(data);
-	mlx_loop_hook(data->mlx, &render, (void *)data);
+	mlx_hook(data->win, 17, 0, game_close, data);
+	mlx_loop_hook(data->mlx, &animation, (void *) data);
 	mlx_loop(data->mlx);
 }

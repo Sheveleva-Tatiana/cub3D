@@ -83,6 +83,7 @@ typedef struct s_tex
 
 typedef struct s_img {
 	void	*img;
+	void	*img2;
 	int	*data;
 	int		bits_per_pixel;
 	int		line_length;
@@ -116,10 +117,11 @@ typedef struct s_map{
 
 typedef struct s_data{
     t_map   *map;
+	void 	*begin;
     void 	*mlx;
 	t_img 	*img;
     void 	*win;
-	char 	*active_key;
+	char 	active_key[250];
 	t_ply	*ply;
 	double	wall_x;
 	int		tex_x;
@@ -159,7 +161,8 @@ void	init_direction(int y, int x, t_data *o);
 void		draw(t_data *data);
 void	ft_pixel_put(int y, int x, t_data *data, unsigned int color);
 
-
+void	free_all(t_data *data);
+int		game_close(t_data *data);
 int 	ft_check_name(char *name);
 void	run_game(t_data *data);
 

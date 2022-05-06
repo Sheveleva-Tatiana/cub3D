@@ -10,10 +10,8 @@
 	{
 		j = 0;
 		while (data->map->map[i][j]) {
-			if (!ft_strchr(" 10NSEW\n", data->map->map[i][j])) {
-				printf("Error\n");
-				clear_and_exit(data);
-			}
+			if (!ft_strchr(" 10NSEW\n", data->map->map[i][j]))
+				print_error_and_exit(data, "Error");
 			j++;
 		}
 		i++;
@@ -43,7 +41,7 @@ void	put_player(int i, int j, t_data *data)
 	data->ply->move_k = 0.2;
 	data->ply->rotate_k = 1.5;
 	data->ply->fov = 60;
-	data->ply->buffer = (double *)malloc(sizeof(double) * WIN_WIDTH);
+//	data->ply->buffer = (double *)malloc(sizeof(double) * WIN_WIDTH);
 }
 
 void	check_player(t_data *data)
@@ -69,10 +67,7 @@ void	check_player(t_data *data)
 		i++;
 	}
 	if (count != 1)
-	{
-		printf("Error\n");
-		clear_and_exit(data);
-	}
+		print_error_and_exit(data, "Error");
 }
 
 void	close_wall_utils(int i, t_data *data, int *err, int j)
@@ -109,10 +104,7 @@ void	check_close_wall(t_data *data)
 		i++;
 	}
 	if (err == 1)
-	{
-		printf("Error\n");
-		clear_and_exit(data);
-	}
+		print_error_and_exit(data, "Error");
 }
 
 void	valid_map(t_data *data)

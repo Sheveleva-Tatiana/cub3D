@@ -23,16 +23,15 @@ void	get_data(char *line, t_data *data, int flag)
 	while (arr[i])
 	{
 		if (!(ft_isdigit_char(arr[i])))
-		{
-			printf("Error\n");
-			exit (1);
-		}
+			print_error_and_exit(data, "Error is not digit");
 		if (flag == 0)
 			data->map->f[i] = ft_atoi(arr[i]);
 		else
 			data->map->c[i] = ft_atoi(arr[i]);
+		free(arr[i]);
 		i++;
 	}
+	free(arr);
 }
 
 void	copy_map(char *file, int start, t_data *data, int end)
@@ -54,6 +53,8 @@ void	copy_map(char *file, int start, t_data *data, int end)
 			data->map->map[k] = line;
 			k++;
 		}
+		else
+			free(line);
 		line = get_next_line(fd);
 		i++;
 	}
