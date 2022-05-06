@@ -26,21 +26,31 @@ void	player_left_right(double x, double y, t_data *data)
 	p_x = (int)data->ply->x;
 	if (data->active_key[124] == 1)
 	{
-		if (data->map->map[p_y][(int)(p_x - y)] == '0'
-			&& data->map->map[(int)(p_y + x)][p_x] == '0')
-		{
-			data->ply->x = data->ply->x - y;
-			data->ply->y = data->ply->y + x;
-		}
+		data->ply->angle = data->ply->angle + data->ply->rotate_k;
+		if (data->ply->angle >= 360)
+			data->ply->angle = 0;
+		if (data->ply->angle <= -360)
+			data->ply->angle = 0;
+//		if (data->map->map[p_y][(int)(p_x - y)] == '0'
+//			&& data->map->map[(int)(p_y + x)][p_x] == '0')
+//		{
+//			data->ply->x = data->ply->x - y;
+//			data->ply->y = data->ply->y + x;
+//		}
 	}
 	else if (data->active_key[123] == 1)
 	{
-		if (data->map->map[p_y][(int)(p_x + y)] == '0'
-			&& data->map->map[(int)(p_y - x)][p_x] == '0')
-		{
-			data->ply->x = data->ply->x + y;
-			data->ply->y = data->ply->y - x;
-		}
+//		if (data->map->map[p_y][(int)(p_x + y)] == '0'
+//			&& data->map->map[(int)(p_y - x)][p_x] == '0')
+//		{
+//			data->ply->x = data->ply->x + y;
+//			data->ply->y = data->ply->y - x;
+//		}
+		data->ply->angle = data->ply->angle - data->ply->rotate_k;
+		if (data->ply->angle >= 360)
+			data->ply->angle = 0;
+		if (data->ply->angle <= -360)
+			data->ply->angle = 0;
 	}
 }
 

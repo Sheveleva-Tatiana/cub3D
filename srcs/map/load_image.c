@@ -46,7 +46,7 @@ void	init_texture(t_tex *tex, t_data *data)
 								   &tex->height);
 	if (!tex->ptr)
 		print_error_and_exit(data, "Error cub->map->tex[i].ptr");
-	tex->data = (int *)mlx_get_data_addr(tex->ptr, &tex->bpp, &tex->size,
+	tex->data = mlx_get_data_addr(tex->ptr, &tex->bpp, &tex->size,
 								  &tex->endian);
 	if (!tex->data)
 		print_error_and_exit(data, "Error cub->map->tex[i].data");

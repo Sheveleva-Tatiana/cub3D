@@ -65,6 +65,7 @@ int	ft_isdigit_char(char *str)
 	return (1);
 }
 
+
 void	clear_and_exit(t_data *data)
 {
 	printf("GOOD BYE, MY FRIEND! I WILL MISS YOU!\n");

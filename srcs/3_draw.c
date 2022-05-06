@@ -99,23 +99,15 @@ static void	walls(t_data *cub, t_map *map, t_draw *draw)
 		draw->texy = (int)draw->texpos & (map->tex->width - 1);
 		draw->texpos += draw->step;
 		if (draw->side == 1 && draw->mapy < cub->ply->y)
-			draw->tn = 0x5F9EA0;
+			draw->tn = 0;
 		else if (draw->side == 1)
-			draw->tn = 0x4682B4;
+			draw->tn = 1;
 		else if (draw->side == 0 && draw->mapx < cub->ply->x)
-			draw->tn = 0xB0C4DE;
+			draw->tn = 2;
 		else
-			draw->tn = 0x87CEFA;
-//		if (draw->side == 1 && draw->mapy < cub->ply->y)
-//			draw->tn = 0;
-//		else if (draw->side == 1)
-//			draw->tn = 1;
-//		else if (draw->side == 0 && draw->mapx < cub->ply->x)
-//			draw->tn = 2;
-//		else
-//			draw->tn = 3;
-		cub->img->data[draw->y * WIN_WIDTH + draw->x] = draw->tn;
-//		cub->img->data[draw->y * WIN_WIDTH + draw->x] = map->tex[draw->tn].data[draw->texy * map->tex->width + draw->texx];
+			draw->tn = 3;
+		cub->img->data[draw->y * WIN_WIDTH + draw->x] = map->tex[draw->tn]
+				.data[draw->texy * map->tex->width + draw->texx];
 		draw->y++;
 	}
 }
@@ -124,6 +116,13 @@ void	draw2(t_data *data, t_draw *draw)
 {
 	draw->y = 0;
 	celing(data, draw);
+	draw->texx = (int)(draw->wallx * data->map->tex->height);
+	if ((draw->side == 0 && draw->cos > 0) || \
+		(draw->side == 1 && draw->sin < 0))
+		draw->texx = data->map->tex->width - draw->texx - 1;
+	draw->step = (double)data->map->tex->height / draw->lineheight;
+	draw->texpos = (draw->drawstart - \
+			WIN_HEIGHT / 2 + draw->lineheight / 2) * draw->step;
 	walls(data, data->map, draw);
 	flour(data, draw);
 
