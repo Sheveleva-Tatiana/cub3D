@@ -1,11 +1,32 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshera <sshera@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/07 19:33:39 by sshera            #+#    #+#             */
+/*   Updated: 2022/05/07 19:34:53 by sshera           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../../include/cub3d.h"
 
-int ft_check_name(char *name)
+int	ft_check_name(char *name)
 {
+	int	fd;
+
 	if (ft_strlen(name) > 4)
+	{
 		if (ft_strnstr(&name[ft_strlen(name) - 4], ".cub", 4))
+		{
+			fd = open(name, O_RDONLY);
+			if (fd < 0)
+				return (0);
+			close(fd);
 			return (1);
+		}
+	}
 	return (0);
 }
 
@@ -53,7 +74,7 @@ void	clear_arr(char **arr)
 
 int	ft_isdigit_char(char *str)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -64,7 +85,6 @@ int	ft_isdigit_char(char *str)
 	}
 	return (1);
 }
-
 
 void	clear_and_exit(t_data *data)
 {

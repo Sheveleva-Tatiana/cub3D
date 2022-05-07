@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   2_read_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshera <sshera@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/07 19:26:35 by sshera            #+#    #+#             */
+/*   Updated: 2022/05/07 19:27:39 by sshera           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 void	init_struct_map(t_data *data)
@@ -6,6 +18,9 @@ void	init_struct_map(t_data *data)
 	data->map->no = NULL;
 	data->map->so = NULL;
 	data->map->we = NULL;
+	data->map->map = NULL;
+	data->map->f[0] = 0;
+	data->map->c[0] = 0;
 }
 
 void	get_data(char *line, t_data *data, int flag)
@@ -38,7 +53,7 @@ void	copy_map(char *file, int start, t_data *data, int end)
 {
 	int		fd;
 	char	*line;
-	int 	i;
+	int		i;
 	int		k;
 
 	fd = open(file, O_RDONLY);
@@ -46,7 +61,7 @@ void	copy_map(char *file, int start, t_data *data, int end)
 	k = 0;
 	line = get_next_line(fd);
 	data->map->map = malloc(sizeof(char *) * ((end - start) + 1) + 1);
-	while(line)
+	while (line)
 	{
 		if (i >= start && line[0] != '\n')
 		{
@@ -90,7 +105,6 @@ void	trim_space(t_data *data)
 		free(data->map->ea);
 		data->map->ea = line;
 	}
-
 }
 
 void	init_camera_plane(t_data *data)
@@ -100,7 +114,7 @@ void	init_camera_plane(t_data *data)
 		data->plane_x = 0.66;
 		data->plane_y = 0;
 	}
-	else if (data->dir_x  == 0 && data->dir_y == 1)
+	else if (data->dir_x == 0 && data->dir_y == 1)
 	{
 		data->plane_x = -0.66;
 		data->plane_y = 0;

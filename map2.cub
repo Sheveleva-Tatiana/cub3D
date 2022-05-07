@@ -1,7 +1,7 @@
-NO ./tex/wall.xpm
-SO ./tex/wall.xpm
-WE ./tex/wood.xpm
-EA ./tex/wood.xpm
+NO ./tex/fire.xpm
+SO ./tex/aer.xpm
+WE ./tex/aqua.xpm
+EA ./tex/terra.xpm
 F 184,113,39
 C 51,198,227
 

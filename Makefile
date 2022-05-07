@@ -40,7 +40,7 @@ OBJS			= 	$(addprefix $(OBJS_DIR), $(OBJS_NAME))
 
 CC				= gcc
 
-#CFLAGS			= -Wall -Wextra -Werror
+CFLAGS			= -Wall -Wextra -Werror
 MLX_FLAGS		= -Lmlx -lmlx -framework OpenGL -framework AppKit
 
 all:				$(NAME)
@@ -66,5 +66,8 @@ fclean:				clean
 					@(rm	-f $(SCREEN))
 
 re:					fclean all
+
+m:					all
+					./cub3D map1.cub
 
 .PHONY:				all, clean, fclean, re, create

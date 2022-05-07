@@ -1,15 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   3_valid_map.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshera <sshera@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/07 19:26:47 by sshera            #+#    #+#             */
+/*   Updated: 2022/05/07 19:29:11 by sshera           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
- void	check_map_line(t_data *data)
+void	check_map_line(t_data *data)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
-	while(data->map->map[i])
+	while (data->map->map[i])
 	{
 		j = 0;
-		while (data->map->map[i][j]) {
+		while (data->map->map[i][j])
+		{
 			if (!ft_strchr(" 10NSEW\n", data->map->map[i][j]))
 				print_error_and_exit(data, "Error");
 			j++;
@@ -22,41 +35,46 @@ void	put_player(int i, int j, t_data *data)
 {
 	data->ply->x = j + 0.5;
 	data->ply->y = i + 0.5;
-	if (ft_strchr("N", data->map->map[i][j])) {
+	if (ft_strchr("N", data->map->map[i][j]))
+	{
 		data->ply->pos = N;
 		data->ply->angle = 90;
 	}
-	else if (ft_strchr("S", data->map->map[i][j])) {
+	else if (ft_strchr("S", data->map->map[i][j]))
+	{
 		data->ply->pos = S;
 		data->ply->angle = 270;
 	}
-	else if (ft_strchr("W", data->map->map[i][j])) {
+	else if (ft_strchr("W", data->map->map[i][j]))
+	{
 		data->ply->pos = W;
 		data->ply->angle = 180;
 	}
-	else if (ft_strchr("E", data->map->map[i][j])) {
+	else if (ft_strchr("E", data->map->map[i][j]))
+	{
 		data->ply->pos = E;
 		data->ply->angle = 0;
 	}
 	data->ply->move_k = 0.2;
 	data->ply->rotate_k = 1.5;
 	data->ply->fov = 60;
-//	data->ply->buffer = (double *)malloc(sizeof(double) * WIN_WIDTH);
 }
 
 void	check_player(t_data *data)
 {
 	int	i;
-	int j;
-	int count;
+	int	j;
+	int	count;
 
 	i = 0;
 	count = 0;
-	while(data->map->map[i])
+	while (data->map->map[i])
 	{
 		j = 0;
-		while (data->map->map[i][j]) {
-			if (ft_strchr("NSEW", data->map->map[i][j])) {
+		while (data->map->map[i][j])
+		{
+			if (ft_strchr("NSEW", data->map->map[i][j]))
+			{
 				put_player(i, j, data);
 				init_direction(i, j, data);
 				count++;
@@ -89,15 +107,16 @@ void	close_wall_utils(int i, t_data *data, int *err, int j)
 void	check_close_wall(t_data *data)
 {
 	int	i;
-	int j;
-	int err;
+	int	j;
+	int	err;
 
 	i = 0;
 	err = 0;
-	while(data->map->map[i])
+	while (data->map->map[i])
 	{
 		j = 0;
-		while (data->map->map[i][j]) {
+		while (data->map->map[i][j])
+		{
 			close_wall_utils(i, data, &err, j);
 			j++;
 		}

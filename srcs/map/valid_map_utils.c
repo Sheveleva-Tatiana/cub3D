@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   valid_map_utils.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshera <sshera@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/07 19:32:23 by sshera            #+#    #+#             */
+/*   Updated: 2022/05/07 19:32:24 by sshera           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 void	check_sym(t_data *data, int i, int j, int *err)
@@ -22,7 +34,8 @@ void	check_sym(t_data *data, int i, int j, int *err)
 
 void	check_next_sym(t_data *data, int i, int j, int *err)
 {
-	if (i + 1 != data->map->count_line) {
+	if (i + 1 != data->map->count_line)
+	{
 		if (data->map->map[i + 1][j])
 			if (!ft_strchr(" 1", data->map->map[i + 1][j]))
 				*err = 1;

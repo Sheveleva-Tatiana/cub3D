@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   3_draw.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshera <sshera@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/07 19:42:55 by sshera            #+#    #+#             */
+/*   Updated: 2022/05/07 19:43:58 by sshera           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 void	draw_step_side(t_data *data, t_draw *draw)
@@ -106,7 +118,7 @@ static void	walls(t_data *cub, t_map *map, t_draw *draw)
 			draw->tn = 2;
 		else
 			draw->tn = 3;
-		cub->img->data[draw->y * WIN_WIDTH + draw->x] = map->tex[draw->tn]
+		cub->img->data[draw->y * WIN_WIDTH + draw->x] = map->tex[draw->tn] \
 				.data[draw->texy * map->tex->width + draw->texx];
 		draw->y++;
 	}
@@ -125,10 +137,9 @@ void	draw2(t_data *data, t_draw *draw)
 			WIN_HEIGHT / 2 + draw->lineheight / 2) * draw->step;
 	walls(data, data->map, draw);
 	flour(data, draw);
-
 }
 
-void draw(t_data *data)
+void	draw(t_data *data)
 {
 	t_draw	draw;
 
@@ -137,7 +148,7 @@ void draw(t_data *data)
 	draw.angle_step = data->ply->fov / WIN_WIDTH;
 	draw.angle = draw.angle_start;
 	draw.x = 0;
-	while(draw.angle > draw.angle_end)
+	while (draw.angle > draw.angle_end)
 	{
 		draw_step_side(data, &draw);
 		hit_wall(data, data->map, &draw, data->ply);
@@ -147,5 +158,4 @@ void draw(t_data *data)
 		draw.x++;
 	}
 	mlx_put_image_to_window(data->mlx, data->win, data->img->img, 0, 0);
-
 }

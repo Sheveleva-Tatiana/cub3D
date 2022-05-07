@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   hook.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshera <sshera@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/07 19:44:09 by sshera            #+#    #+#             */
+/*   Updated: 2022/05/07 19:44:18 by sshera           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/cub3d.h"
 
 int	game_close(t_data *data)
@@ -20,7 +32,6 @@ int	unpress_key(int key, t_data *data)
 
 void	game_hook(t_data *data)
 {
-
 	mlx_hook(data->win, 2, 1L << 0, press_key, data);
 	mlx_hook(data->win, 3, 1L << 0, unpress_key, data);
 }

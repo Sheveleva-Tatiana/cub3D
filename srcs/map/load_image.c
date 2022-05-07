@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   load_image.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sshera <sshera@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/07 19:31:44 by sshera            #+#    #+#             */
+/*   Updated: 2022/05/07 19:32:02 by sshera           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../include/cub3d.h"
 
 char	*load_path(int flag, t_data *data)
@@ -28,38 +40,41 @@ void	load_tex(t_tex *tex, t_data *data, int flag)
 	all_path = load_path(flag, data);
 	path = ft_substr(all_path, 0, ft_strlen(all_path) - 1);
 	free(all_path);
-	if (access(path, F_OK)) {
-		print_error_and_exit(data, "Texture file not found\n");
+	if (access(path, F_OK))
+	{
+		print_error_and_exit(data, "Texture file not found");
 	}
-	else if (access(path, R_OK)) {
-		print_error_and_exit(data, "Error reading texture file\n");
+	else if (access(path, R_OK))
+	{
+		print_error_and_exit(data, "Error reading texture file");
 	}
 	else
 		tex->path = path;
 	if (!check_image_file(tex->path))
-		print_error_and_exit(data, "The file extension is not .xpm\n");
+		print_error_and_exit(data, "The file extension is not .xpm");
 }
 
 void	init_texture(t_tex *tex, t_data *data)
 {
-	tex->ptr = mlx_xpm_file_to_image(data->mlx, tex->path, &tex->width,
-								   &tex->height);
+	tex->ptr = mlx_xpm_file_to_image(data->mlx, tex->path, &tex->width, \
+							&tex->height);
 	if (!tex->ptr)
 		print_error_and_exit(data, "Error cub->map->tex[i].ptr");
-	tex->data = mlx_get_data_addr(tex->ptr, &tex->bpp, &tex->size,
-								  &tex->endian);
+	tex->data = mlx_get_data_addr(tex->ptr, &tex->bpp, &tex->size, \
+							&tex->endian);
 	if (!tex->data)
 		print_error_and_exit(data, "Error cub->map->tex[i].data");
 }
 
 void	load_image(t_data *data)
 {
-	int i;
+	int	i;
 
 	i = -1;
 	data->map->tex = (t_tex *)malloc(sizeof(t_tex) * 4);
 	while (++i < 4)
 	{
+		data->map->tex[i].path = NULL;
 		load_tex(&data->map->tex[i], data, i);
 		init_texture(&data->map->tex[i], data);
 	}
