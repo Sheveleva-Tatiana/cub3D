@@ -152,6 +152,7 @@ void	game_hook(t_data *data);
 void	moving(t_data *data);
 //draw_game
 void	draw_game(t_data *data);
+
 void	init_texture(t_tex *tex, t_data *data);
 //game_math
 void	draw_step_side(t_data *data, t_draw *draw);
