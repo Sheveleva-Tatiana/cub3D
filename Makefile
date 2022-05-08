@@ -11,23 +11,28 @@ LIBRARY			=	./lib/libft.a
 MLX_DIR			=	./mlx/
 MLX_LIB			=	./mlx/libmlx.a
 
-SRCS_NAME		=	1_main.c				\
-					2_run_game.c			\
-					3_draw.c				\
-					hook.c					\
-					move_ply.c				\
+SRCS_NAME		=	1_main.c			\
+					2_run_game.c		\
+					3_game_hook.c		\
+					4_moving.c			\
+					5_1_draw_game.c		\
+					5_2_game_math.c		\
+					5_3_draw_cfw.c		\
+					6_draw_minimap.c	\
 
-MAP_SRCS		=	1_init_map.c 			\
-					2_read_map.c			\
-					3_valid_map.c			\
-					4_valid_map2.c			\
-					valid_map_utils.c		\
-					load_image.c			\
-					get_next_line.c			\
+MAP_SRCS		=	1_lets_start.c		\
+					2_1_init_map.c		\
+					2_2_init_map.c		\
+					3_1_valid_map.c		\
+					3_2_valid_map.c		\
+					3_3_valid_map.c		\
+					3_4_valid_map.c		\
+					4_1_load_img.c		\
 
-UTILS_SRCS		= 	error.c					\
-					utils.c					\
-					utils2.c				\
+UTILS_SRCS		= 	error.c				\
+					utils.c				\
+					utils2.c			\
+					get_next_line.c		\
 
 
 OBJS_NAME		= $(SRCS_NAME:.c=.o) $(MAP_SRCS:.c=.o) $(UTILS_SRCS:.c=.o)

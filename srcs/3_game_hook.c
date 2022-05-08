@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   3_game_hook.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sshera <sshera@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:44:09 by sshera            #+#    #+#             */
-/*   Updated: 2022/05/07 19:44:18 by sshera           ###   ########.fr       */
+/*   Updated: 2022/05/08 14:28:25 by sshera           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/cub3d.h"
-
-int	game_close(t_data *data)
-{
-	clear_and_exit(data);
-	return (0);
-}
 
 static int	press_key(int key, t_data *data)
 {

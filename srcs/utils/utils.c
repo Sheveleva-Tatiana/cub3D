@@ -6,29 +6,11 @@
 /*   By: sshera <sshera@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 19:33:39 by sshera            #+#    #+#             */
-/*   Updated: 2022/05/07 19:34:53 by sshera           ###   ########.fr       */
+/*   Updated: 2022/05/08 16:00:11 by sshera           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../include/cub3d.h"
-
-int	ft_check_name(char *name)
-{
-	int	fd;
-
-	if (ft_strlen(name) > 4)
-	{
-		if (ft_strnstr(&name[ft_strlen(name) - 4], ".cub", 4))
-		{
-			fd = open(name, O_RDONLY);
-			if (fd < 0)
-				return (0);
-			close(fd);
-			return (1);
-		}
-	}
-	return (0);
-}
 
 char	*ft_subst(char *str, int s, int l, int flag)
 {
