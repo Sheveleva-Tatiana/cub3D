@@ -6,7 +6,7 @@
 /*   By: sshera <sshera@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/08 14:14:46 by sshera            #+#    #+#             */
-/*   Updated: 2022/05/08 16:32:38 by sshera           ###   ########.fr       */
+/*   Updated: 2022/05/08 16:37:32 by sshera           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	init_texture(t_tex *tex, t_data *data)
 							&tex->height);
 	if (!tex->ptr)
 		print_error_and_exit(data, "Error cub->map->tex[i].ptr");
-	tex->data = mlx_get_data_addr(tex->ptr, &tex->bpp, &tex->size, \
+	tex->data = (int *) mlx_get_data_addr(tex->ptr, &tex->bpp, &tex->size, \
 							&tex->endian);
 	if (!tex->data)
 		print_error_and_exit(data, "Error cub->map->tex[i].data");
