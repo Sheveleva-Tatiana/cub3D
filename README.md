@@ -1,7 +1,17 @@
 
 # cu3D
-This project is inspired by the world-famous Wolfenstein 3D game
 
-For detailed information, refer to the **[subject of this project](https://github.com/ilnrzakirov/cu3D/blob/main/en.subject.pdf)**
 
-<br> Team page: (https://github.com/Sheveleva-Tatiana/) </br>
+Установка:
+
+Из корневой директории проекта
+```
+make
+```
+Запуск игры:
+
+./cub3d map1.cub
+
+![Cub3d](https://github.com/Sheveleva-Tatiana/Sheveleva-Tatiana/blob/main/accert/Cub3d_2.gif)
+
+
